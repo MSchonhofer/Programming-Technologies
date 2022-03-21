@@ -8,10 +8,10 @@ using SimpleTask;
 
 namespace SimpleTaskTests
 {
-    [TestClass()]
+    [TestClass]
     public class TaskTest
     {
-        [TestMethod()]
+        [TestMethod]
         public void TestExceptionCase()
         {
             BankAccount bank = new BankAccount("Amanda", 0);
@@ -31,13 +31,16 @@ namespace SimpleTaskTests
             }
             Assert.Fail("Failed exception");
         }
+        
+        [TestMethod]
         public void TestCreditCase()
         {
             BankAccount bank = new BankAccount("Amanda", 3);
             bank.Credit(3);
-            Assert.AreEqual(5, bank.Balance);
+            Assert.AreEqual(6, bank.Balance);
         }
 
+        [TestMethod]
         public void TestDebitCase()
         {
             BankAccount bank = new BankAccount("Amanda", 3);
