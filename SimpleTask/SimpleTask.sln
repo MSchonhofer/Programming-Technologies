@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.19
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTask", "SimpleTask\SimpleTask.csproj", "{49F5C31C-0998-4479-95CC-4D9D8AC65B20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTaskTests", "SimpleTaskTests\SimpleTaskTests.csproj", "{0355ACB0-1907-40C1-894B-EC834EFFC2B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49F5C31C-0998-4479-95CC-4D9D8AC65B20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49F5C31C-0998-4479-95CC-4D9D8AC65B20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49F5C31C-0998-4479-95CC-4D9D8AC65B20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49F5C31C-0998-4479-95CC-4D9D8AC65B20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0355ACB0-1907-40C1-894B-EC834EFFC2B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0355ACB0-1907-40C1-894B-EC834EFFC2B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0355ACB0-1907-40C1-894B-EC834EFFC2B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0355ACB0-1907-40C1-894B-EC834EFFC2B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {64C1EBBE-5FF4-4891-A4A0-4503984C24CE}
+	EndGlobalSection
+EndGlobal
