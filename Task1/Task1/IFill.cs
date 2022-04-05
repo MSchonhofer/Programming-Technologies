@@ -6,6 +6,6 @@ namespace Data
 {
     public interface IFill
     {
-        void Fill(DataLibrary library);
+        void Fill(DataRepository library);
     }
 }
