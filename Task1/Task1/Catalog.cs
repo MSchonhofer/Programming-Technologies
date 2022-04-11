@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Data
 {
+    [Serializable]
     public class Catalog
     {
         public String Author { get; set; }
