@@ -74,9 +74,9 @@ namespace Logic
 
         #region Reader
 
-        public Reader GetReader(int id)
+        public Reader GetReader(int readerID)
         {
-            return dataRepository.GetReader(id);
+            return dataRepository.GetReader(readerID);
         }
 
         public void AddReader(Reader reader)
@@ -85,9 +85,9 @@ namespace Logic
             dataRepository.AddAction(new AddReader(DateTime.Now, reader));
         }
 
-        public void AddReader(int id, string fistName, string lastName)
+        public void AddReader(int readerID, string name, string surname)
         {
-            Reader reader = new Reader(id, fistName, lastName);
+            Reader reader = new Reader(readerID, name, surname);
             dataRepository.AddReader(reader);
             dataRepository.AddAction(new AddReader(DateTime.Now, reader));
         }
@@ -98,22 +98,22 @@ namespace Logic
             dataRepository.AddAction(new DeleteReader(DateTime.Now, reader));
         }
 
-        public void DeleteReader(int id)
+        public void DeleteReader(int readerID)
         {
-            Reader reader = dataRepository.GetReader(id);
+            Reader reader = dataRepository.GetReader(readerID);
             if (reader != null)
             {
-                dataRepository.DeleteReader(id);
+                dataRepository.DeleteReader(readerID);
                 dataRepository.AddAction(new DeleteReader(DateTime.Now, reader));
             }
         }
 
-        public void UpdateReader(int id, Reader reader)
+        public void UpdateReader(int readerID, Reader reader)
         {
-            Reader r = dataRepository.GetReader(id);
+            Reader r = dataRepository.GetReader(readerID);
             if (r != null)
             {
-                dataRepository.UpdateReader(id, reader);
+                dataRepository.UpdateReader(readerID, reader);
                 dataRepository.AddAction(new UpdateReader(DateTime.Now, reader));
             }
         }
