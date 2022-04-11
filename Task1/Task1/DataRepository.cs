@@ -111,25 +111,28 @@ namespace Data
 
         #region Reader
 
-        public void AddReader(Reader reader)
+       public void AddReader(Reader r)
         {
-            data.Readers.Add (reader);
+            data.Readers.Add(r);
         }
 
-        public void SetReaders(List<Reader> readers)
+        public void SetReaders(List<Reader> r)
         {
-            data.Readers = readers;
+            data.Readers = r;
         }
 
         public Reader GetReader(int readerID)
         {
-            foreach(Reader reader in data.Readers)
+            foreach(Reader r in data.Readers)
             {
-                if (reader.ReaderID == readerID)
+                if (r.ReaderID == readerID)
                 {
-                    return reader;
+                    return r;
                 }
+
             }
+
+            return null;
         }
 
        public void UpdateReader(int readerID, Reader reader)
