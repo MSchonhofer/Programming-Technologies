@@ -12,45 +12,43 @@ namespace Tests
     {
         public void Fill(DataRepository dataRepository)
         {
-            Catalog catalog1 = new("Dostoevsky", "Crime and Punishment");
-            catalog1.Books.Add(new Book(catalog1, 1));
-            catalog1.Books.Add(new Book(catalog1, 2));
-            catalog1.Books.Add(new Book(catalog1, 3));
-            catalog1.Books.Add(new Book(catalog1, 4));
-            dataRepository.AddCatalog(catalog1);
+            Catalog c1 = new("Dostoevsky", "Crime and Punishment");
+            c1.Books.Add(new Book(c1, 1));
+            c1.Books.Add(new Book(c1, 2));
+            c1.Books.Add(new Book(c1, 3));
+            c1.Books.Add(new Book(c1, 4));
+            dataRepository.AddCatalog(c1);
 
-            Catalog catalog2 = new("Conrad", "Heart of Darkness");
-            catalog2.Books.Add(new Book(catalog2, 5));
-            catalog2.Books.Add(new Book(catalog2, 6));
-            catalog2.Books.Add(new Book(catalog2, 7));
-            dataRepository.AddCatalog(catalog2);
+            Catalog c2 = new("Conrad", "Heart of Darkness");
+            c2.Books.Add(new Book(c2, 5));
+            c2.Books.Add(new Book(c2, 6));
+            c2.Books.Add(new Book(c2, 7));
+            dataRepository.AddCatalog(c2);
 
-            Catalog catalog3 = new("Tolkien", "Lord of Rings");
-            catalog1.Books.Add(new Book(catalog3, 8));
-            catalog1.Books.Add(new Book(catalog3, 9));
-            catalog1.Books.Add(new Book(catalog3, 10));
-            catalog1.Books.Add(new Book(catalog3, 11));
-            catalog1.Books.Add(new Book(catalog3, 12));
-            catalog1.Books.Add(new Book(catalog3, 13));
-            dataRepository.AddCatalog(catalog3);
+            Catalog c3 = new("Tolkien", "Lord of Rings");
+            c3.Books.Add(new Book(c3, 8));
+            c3.Books.Add(new Book(c3, 9));
+            c3.Books.Add(new Book(c3, 10));
+            c3.Books.Add(new Book(c3, 11));
+            c3.Books.Add(new Book(c3, 12));
+            c3.Books.Add(new Book(c3, 13));
+            dataRepository.AddCatalog(c3);
 
-            Reader reader1 = new(1, "Jack", "Smith");
-            reader1.Books.Add(new Book(catalog3, 14));
-            reader1.Books.Add(new Book(catalog1, 15));
-            reader1.Books.Add(new Book(catalog3, 16));
-            dataRepository.AddReader(reader1);
+            Reader r1 = new(1, "Jack", "Smith");
+            r1.Books.Add(new Book(c3, 14));
+            r1.Books.Add(new Book(c1, 15));
+            r1.Books.Add(new Book(c3, 16));
+            dataRepository.AddReader(r1);
 
-            Reader reader2 = new(2, "Mary", "Carlisle");
-            reader2.Books.Add(new Book(catalog2, 17));
-            reader2.Books.Add(new Book(catalog1, 18));
-            reader2.Books.Add(new Book(catalog3, 19));
-            dataRepository.AddReader(reader2);
+            Reader r2 = new(2, "Mary", "Carlisle");
+            r2.Books.Add(new Book(c2, 17));
+            r2.Books.Add(new Book(c1, 18));
+            r2.Books.Add(new Book(c3, 19));
+            dataRepository.AddReader(r2);
 
-            Reader reader3 = new(3, "John", "Novak");
-            reader3.Books.Add(new Book(catalog1, 20));
-            reader3.Books.Add(new Book(catalog2, 21));
-            dataRepository.AddReader(reader3);
+            Reader r3 = new(3, "John", "Novak");
+            r3.Books.Add(new Book(c1, 20));
+            r3.Books.Add(new Book(c2, 21));
+            dataRepository.AddReader(r3);
         }
     }
-
-}
