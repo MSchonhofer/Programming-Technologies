@@ -62,7 +62,8 @@ namespace Tests
 
             Assert.IsTrue(dataRepository.GetReader(91).Name.Equals("Cole"));
             Assert.IsTrue(dataRepository.GetReader(91).Surname.Equals("Miller"));
-            Assert.IsTrue(dataRepository.GetReader(91).ReaderID == 91)
+            Assert.IsTrue(dataRepository.GetReader(91).ReaderID == 91);
+            
 
             dataRepository.DeleteReader(91);
             Assert.IsTrue(dataRepository.GetAllReaders().ToList().Count == 4);
