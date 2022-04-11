@@ -25,7 +25,7 @@ namespace Data
         private DataContext data { get; set; }
         private IFill filler;
 
-    public DataRepository(IAction action)
+    public DataRepository(IFill filler)
     {
         data = new DataContext();
         this.filler = filler;
@@ -39,7 +39,7 @@ namespace Data
             data.Catalogs.Add(catalog);
         }
 
-        public void SetCatalog(List<Catalog> catalog)
+        public void SetCatalogs(List<Catalog> catalog)
         {
             data.Catalogs = catalog;
         }
@@ -121,22 +121,22 @@ namespace Data
             data.Readers = readers;
         }
 
-        public Reader GetReader(int id)
+        public Reader GetReader(int readerID)
         {
             foreach(Reader reader in data.Readers)
             {
-                if (reader.ReaderID == id)
+                if (reader.ReaderID == readerID)
                 {
                     return reader;
                 }
             }
         }
 
-        public void UpdateReader(int id, Reader reader)
+       public void UpdateReader(int readerID, Reader reader)
         {
             for (int i = 0; i < data.Readers.Count; i++)
             {
-                if (data.Readers[i].ReaderID == id)
+                if (data.Readers[i].ReaderID == readerID)
                 {
                     data.Readers[i] = reader;
                     break;
@@ -144,9 +144,9 @@ namespace Data
             }
         }
 
-        public void DeleteReader(int id)
+        public void DeleteReader(int readerID)
         {
-            Reader reader = GetReader(id);
+            Reader reader = GetReader(readerID);
             if (reader != null)
             {
                 data.Readers.Remove (reader);
