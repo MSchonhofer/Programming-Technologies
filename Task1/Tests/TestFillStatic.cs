@@ -52,3 +52,4 @@ namespace Tests
             dataRepository.AddReader(r3);
         }
     }
+}
