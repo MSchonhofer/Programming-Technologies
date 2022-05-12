@@ -7,8 +7,8 @@ namespace Data
     public abstract class ActionBook : IAction
     {
         protected DateTime dateTime;
-        public Book Book { get; set; }
-        public ActionBook(DateTime date, Book book)
+        public IBook Book { get; set; }
+        public ActionBook(DateTime date, IBook book)
         {
             dateTime = date;
             Book = book;
@@ -24,7 +24,7 @@ namespace Data
 
     public class AddBook : ActionBook
     {
-        public AddBook(DateTime date, Book book) : base(date, book) { }
+        public AddBook(DateTime date, IBook book) : base(date, book) { }
         public override ActionType GetActionType()
         {
             return ActionType.AddBook;
@@ -33,8 +33,8 @@ namespace Data
 
     public class RentBook : ActionBook
     {
-        public Reader Reader { get; set; }
-        public RentBook(DateTime date, Book book, Reader reader) : base(date, book) 
+        public IReader Reader { get; set; }
+        public RentBook(DateTime date, IBook book, IReader reader) : base(date, book) 
         {
             Reader = reader;
         }
@@ -46,8 +46,8 @@ namespace Data
 
     public class ReturnBook : ActionBook
     {
-        public Reader Reader { get; set; }
-        public ReturnBook(DateTime date, Book book, Reader reader) : base(date, book)
+        public IReader Reader { get; set; }
+        public ReturnBook(DateTime date, IBook book, IReader reader) : base(date, book)
         {
             Reader = reader;
         }
@@ -59,7 +59,7 @@ namespace Data
 
     public class DeleteBook : ActionBook
     {
-        public DeleteBook(DateTime date, Book book) : base(date, book) { }
+        public DeleteBook(DateTime date, IBook book) : base(date, book) { }
         public override ActionType GetActionType()
         {
             return ActionType.DeleteBook;

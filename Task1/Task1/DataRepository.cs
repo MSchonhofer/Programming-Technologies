@@ -4,19 +4,19 @@ using System.Text;
 
 namespace Data
 {
-    public class DataRepository
+    internal class DataRepository : IDataRepository
     {
-        public class DataContext
+        internal class DataContext : IDataContext
         {
             public int ValidBookID { get; set; }
-            public List<Reader> Readers { get; set; }
-            public List<Catalog> Catalogs { get; set; }
+            public List<IReader> Readers { get; set; }
+            public List<ICatalog> Catalogs { get; set; }
             public List<IAction> Actions { get; set; }
 
             public DataContext()
             {
-                Readers = new List<Reader>();
-                Catalogs = new List<Catalog>();
+                Readers = new List<IReader>();
+                Catalogs = new List<ICatalog>();
                 Actions = new List<IAction>();
                 ValidBookID = 0;
             }
@@ -34,19 +34,19 @@ namespace Data
 
         #region Catalog
 
-        public void AddCatalog(Catalog catalog)
+        public void AddCatalog(ICatalog catalog)
         {
             data.Catalogs.Add(catalog);
         }
 
-        public void SetCatalogs(List<Catalog> catalog)
+        public void SetCatalogs(List<ICatalog> catalog)
         {
             data.Catalogs = catalog;
         }
 
-        public Catalog GetCatalog(string author, string title)
+        public ICatalog GetCatalog(string author, string title)
         {
-            foreach (Catalog catalog in data.Catalogs)
+            foreach (ICatalog catalog in data.Catalogs)
             {
                 if (catalog.Author.Equals(author) && catalog.Title.Equals(title))
                 {
@@ -57,22 +57,24 @@ namespace Data
 
                     return null;
             }
+        
 
-        public Catalog GetCatalog(int index)
+        public ICatalog GetCatalog(int index)
         {
             if(index >= 0 && index < data.Catalogs.Count)
             {
                 return data.Catalogs[index];
             }
+
             return null;
         }
 
-        public IEnumerable<Catalog> GetAllCatalogs()
+        public IEnumerable<ICatalog> GetAllCatalogs()
         {
             return data.Catalogs;
         }
 
-        public void UpdateCatalog(int index, Catalog catalog)
+        public void UpdateCatalog(int index, ICatalog catalog)
         {
             if (index >= 0 && index <= data.Catalogs.Count)
             {
@@ -80,7 +82,7 @@ namespace Data
             }
         }
 
-        public void UpdateCatalog(string author, string title, Catalog catalog)
+        public void UpdateCatalog(string author, string title, ICatalog catalog)
         {
             for (int i = 0; i < data.Catalogs.Count; i++)
             {
@@ -102,7 +104,7 @@ namespace Data
 
         public void DeleteCatalog(string author, string title)
         {
-            Catalog catalog = GetCatalog(author, title);
+            ICatalog catalog = GetCatalog(author, title);
             if (catalog != null)
             {
                 data.Catalogs.Remove (catalog);
@@ -113,19 +115,19 @@ namespace Data
 
         #region Reader
 
-       public void AddReader(Reader r)
+        public void AddReader(IReader r)
         {
             data.Readers.Add(r);
         }
 
-        public void SetReaders(List<Reader> r)
+        public void SetReaders(List<IReader> r)
         {
             data.Readers = r;
         }
 
-        public Reader GetReader(int readerID)
+        public IReader GetReader(int readerID)
         {
-            foreach(Reader r in data.Readers)
+            foreach(IReader r in data.Readers)
             {
                 if (r.ReaderID == readerID)
                 {
@@ -137,7 +139,7 @@ namespace Data
             return null;
         }
 
-       public void UpdateReader(int readerID, Reader reader)
+        public void UpdateReader(int readerID, IReader reader)
         {
             for (int i = 0; i < data.Readers.Count; i++)
             {
@@ -151,14 +153,14 @@ namespace Data
 
         public void DeleteReader(int readerID)
         {
-            Reader reader = GetReader(readerID);
+            IReader reader = GetReader(readerID);
             if (reader != null)
             {
                 data.Readers.Remove (reader);
             }
         }
 
-        public IEnumerable<Reader> GetAllReaders()
+        public IEnumerable<IReader> GetAllReaders()
         {
             return data.Readers;
         }
@@ -167,17 +169,17 @@ namespace Data
 
         #region Book
 
-        public Book GetBook(Catalog catalog)
+        public IBook GetBook(ICatalog catalog)
         {
             if (catalog.Books.Count != 0)
             {
-                Book book = catalog.Books[catalog.Books.Count - 1];
+                IBook    book = catalog.Books[catalog.Books.Count - 1];
                 return book;
             }
             return null;
         }
 
-        public void AddBook(Book book)
+        public void AddBook(IBook book)
         {
             if (book.Catalog != null)
             {
