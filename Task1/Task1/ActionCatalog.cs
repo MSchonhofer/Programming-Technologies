@@ -7,8 +7,8 @@ namespace Data
     public abstract class ActionCatalog : IAction
     {
         protected DateTime dateTime;
-        public Catalog Catalog { get; set; }
-        public ActionCatalog(DateTime date, Catalog catalog)
+        public ICatalog Catalog { get; set; }
+        public ActionCatalog(DateTime date, ICatalog catalog)
         {
             dateTime = date;
             Catalog = catalog;
@@ -24,7 +24,7 @@ namespace Data
 
     public class AddCatalog : ActionCatalog
     {
-        public AddCatalog(DateTime date, Catalog catalog) : base(date, catalog) { }
+        public AddCatalog(DateTime date, ICatalog catalog) : base(date, catalog) { }
 
         public override ActionType GetActionType()
         {
@@ -34,7 +34,7 @@ namespace Data
 
     public class UpdateCatalog : ActionCatalog
     {
-        public UpdateCatalog(DateTime date, Catalog catalog) : base(date, catalog) { }
+        public UpdateCatalog(DateTime date, ICatalog catalog) : base(date, catalog) { }
 
         public override ActionType GetActionType()
         {
@@ -44,7 +44,7 @@ namespace Data
 
     public class DeleteCatalog : ActionCatalog
     {
-        public DeleteCatalog(DateTime date, Catalog catalog) : base(date, catalog) { }
+        public DeleteCatalog(DateTime date, ICatalog catalog) : base(date, catalog) { }
 
         public override ActionType GetActionType()
         {

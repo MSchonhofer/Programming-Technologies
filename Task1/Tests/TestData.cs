@@ -7,12 +7,12 @@ namespace Tests
     [TestClass]
     public class TestData
     {
-        private DataRepository dataRepository;
+        private IDataRepository dataRepository;
 
         [TestInitialize]
         public void Fill()
         {
-            dataRepository = new DataRepository(new TestFillStatic());
+            dataRepository = new DataRepository(new TestFillStatic()); // tu trzeba poprawic
         }
 
         [TestMethod]
@@ -41,7 +41,7 @@ namespace Tests
         public void BookTest()
 
         {
-            Catalog catalog = dataRepository.GetCatalog(0);
+            ICatalog catalog = dataRepository.GetCatalog(0);
 
             Assert.IsTrue(dataRepository.GetBook(catalog).Catalog.Author.Equals("Dostoevsky"));
             Assert.IsTrue(dataRepository.GetBook(catalog).Catalog.Title.Equals("Crime and Punishment"));
@@ -55,9 +55,9 @@ namespace Tests
         {
 
             Assert.IsTrue(dataRepository.GetAllReaders().ToList().Count == 3);
-            dataRepository.AddReader(new Reader(90, "Morgan", "Welsh"));
+            dataRepository.AddReader(new Reader(90, "Morgan", "Welsh")); // tu trzeba poprawic
             Assert.IsTrue(dataRepository.GetAllReaders().ToList().Count == 4);
-            dataRepository.AddReader(new Reader(91, "Cole", "Miller"));
+            dataRepository.AddReader(new Reader(91, "Cole", "Miller")); // tu trzeba poprawic
             Assert.IsTrue(dataRepository.GetAllReaders().ToList().Count == 5);
 
             Assert.IsTrue(dataRepository.GetReader(91).Name.Equals("Cole"));
@@ -69,7 +69,7 @@ namespace Tests
             Assert.IsTrue(dataRepository.GetAllReaders().ToList().Count == 4);
 
 
-           Reader r = new(99, "Nick", "Jones");
+           IReader r = new(99, "Nick", "Jones"); // tu trzeba poprawic
             dataRepository.UpdateReader(90, r);
 
             Assert.IsTrue(dataRepository.GetReader(99).Name.Equals("Nick"));
@@ -84,7 +84,7 @@ namespace Tests
         {
 
             Assert.IsTrue(dataRepository.GetAllCatalogs().ToList().Count == 3);
-            dataRepository.AddCatalog(new Catalog("test1", "test2"));
+            dataRepository.AddCatalog(new Catalog("test1", "test2")); // tu trzeba poprawic
             Assert.IsTrue(dataRepository.GetAllCatalogs().ToList().Count == 4);
 
             Assert.IsTrue(dataRepository.GetCatalog(3).Author.Equals("test1"));

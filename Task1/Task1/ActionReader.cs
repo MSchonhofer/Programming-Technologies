@@ -7,8 +7,8 @@ namespace Data
     public abstract class ActionReader : IAction
     {
         protected DateTime dateTime;
-        public Reader Reader { get; set; }
-        public ActionReader(DateTime date, Reader reader)
+        public IReader Reader { get; set; }
+        public ActionReader(DateTime date, IReader reader)
         {
             dateTime = date;
             Reader = reader;
@@ -24,7 +24,7 @@ namespace Data
 
     public class AddReader : ActionReader
     {
-        public AddReader(DateTime date, Reader reader) : base(date, reader) { }
+        public AddReader(DateTime date, IReader reader) : base(date, reader) { }
         public override ActionType GetActionType()
         {
             return ActionType.AddReader;
@@ -33,7 +33,7 @@ namespace Data
 
     public class UpdateReader : ActionReader
     {
-        public UpdateReader(DateTime date, Reader reader) : base (date, reader) { }
+        public UpdateReader(DateTime date, IReader reader) : base (date, reader) { }
 
         public override ActionType GetActionType()
         {
@@ -43,7 +43,7 @@ namespace Data
 
     public class DeleteReader : ActionReader
     {
-        public DeleteReader(DateTime date, Reader reader) : base(date, reader) { }
+        public DeleteReader(DateTime date, IReader reader) : base(date, reader) { }
         public override ActionType GetActionType()
         {
             return ActionType.DeleteReader;

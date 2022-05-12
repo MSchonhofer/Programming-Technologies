@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Data
 {
-    internal class IBook
+    internal class Book : IBook
     {
         public ICatalog Catalog { get; set; }
         public int BookID { get; set; }
-        public IBook(ICatalog catalog, int id)
+        public Book(ICatalog catalog, int id)
         {
             Catalog = catalog;
             BookID = id;

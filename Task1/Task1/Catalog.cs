@@ -6,7 +6,7 @@ namespace Data
 {
     [Serializable]
 
-    internal class Catalog
+    internal class Catalog : ICatalog
     {
         public String Author { get; set; }
         public String Title { get; set; }
