@@ -46,15 +46,17 @@ namespace Data
 
         public Catalog GetCatalog(string author, string title)
         {
-            foreach(Catalog catalog in data.Catalogs)
+            foreach (Catalog catalog in data.Catalogs)
             {
                 if (catalog.Author.Equals(author) && catalog.Title.Equals(title))
                 {
                     return catalog;
                 }
-                return null;
+
             }
-        }
+
+                    return null;
+            }
 
         public Catalog GetCatalog(int index)
         {
