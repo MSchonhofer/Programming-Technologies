@@ -34,17 +34,17 @@ namespace Data
 
         #region Catalog
 
-        public void AddCatalog(ICatalog catalog)
+        public override void AddCatalog(ICatalog catalog)
         {
             data.Catalogs.Add(catalog);
         }
 
-        public void SetCatalogs(List<ICatalog> catalog)
+        public override void SetCatalogs(List<ICatalog> catalog)
         {
             data.Catalogs = catalog;
         }
 
-        public ICatalog GetCatalog(string author, string title)
+        public override ICatalog GetCatalog(string author, string title)
         {
             foreach (ICatalog catalog in data.Catalogs)
             {
@@ -59,7 +59,7 @@ namespace Data
             }
         
 
-        public ICatalog GetCatalog(int index)
+        public override ICatalog GetCatalog(int index)
         {
             if(index >= 0 && index < data.Catalogs.Count)
             {
@@ -69,12 +69,12 @@ namespace Data
             return null;
         }
 
-        public IEnumerable<ICatalog> GetAllCatalogs()
+        public override IEnumerable<ICatalog> GetAllCatalogs()
         {
             return data.Catalogs;
         }
 
-        public void UpdateCatalog(int index, ICatalog catalog)
+        public override void UpdateCatalog(int index, ICatalog catalog)
         {
             if (index >= 0 && index <= data.Catalogs.Count)
             {
@@ -82,7 +82,7 @@ namespace Data
             }
         }
 
-        public void UpdateCatalog(string author, string title, ICatalog catalog)
+        public override void UpdateCatalog(string author, string title, ICatalog catalog)
         {
             for (int i = 0; i < data.Catalogs.Count; i++)
             {
@@ -94,7 +94,7 @@ namespace Data
             }
         }
 
-        public void DeleteCatalog(int index)
+        public override void DeleteCatalog(int index)
         {
             if (index >= 0 && index < data.Catalogs.Count)
             {
@@ -102,7 +102,7 @@ namespace Data
             }
         }
 
-        public void DeleteCatalog(string author, string title)
+        public override void DeleteCatalog(string author, string title)
         {
             ICatalog catalog = GetCatalog(author, title);
             if (catalog != null)
@@ -115,17 +115,17 @@ namespace Data
 
         #region Reader
 
-        public void AddReader(IReader r)
+        public override void AddReader(IReader r)
         {
             data.Readers.Add(r);
         }
 
-        public void SetReaders(List<IReader> r)
+        public override void SetReaders(List<IReader> r)
         {
             data.Readers = r;
         }
 
-        public IReader GetReader(int readerID)
+        public override IReader GetReader(int readerID)
         {
             foreach(IReader r in data.Readers)
             {
@@ -139,7 +139,7 @@ namespace Data
             return null;
         }
 
-        public void UpdateReader(int readerID, IReader reader)
+        public override void UpdateReader(int readerID, IReader reader)
         {
             for (int i = 0; i < data.Readers.Count; i++)
             {
@@ -151,7 +151,7 @@ namespace Data
             }
         }
 
-        public void DeleteReader(int readerID)
+        public override void DeleteReader(int readerID)
         {
             IReader reader = GetReader(readerID);
             if (reader != null)
@@ -160,7 +160,7 @@ namespace Data
             }
         }
 
-        public IEnumerable<IReader> GetAllReaders()
+        public override IEnumerable<IReader> GetAllReaders()
         {
             return data.Readers;
         }
@@ -169,7 +169,7 @@ namespace Data
 
         #region Book
 
-        public IBook GetBook(ICatalog catalog)
+        public override IBook GetBook(ICatalog catalog)
         {
             if (catalog.Books.Count != 0)
             {
@@ -179,7 +179,7 @@ namespace Data
             return null;
         }
 
-        public void AddBook(IBook book)
+        public override void AddBook(IBook book)
         {
             if (book.Catalog != null)
             {
@@ -188,21 +188,21 @@ namespace Data
             }
         }
 
-        public int ValidBookID //current valid book ID
+       /* public override int ValidBookID //current valid book ID
         {
             get { return data.ValidBookID; }
         }
-
+       */
         #endregion
 
         #region Actions
 
-        public void AddAction(IAction action)
+        public override void AddAction(IAction action)
         {
             data.Actions.Add (action);
         }
 
-        public IAction GetAction(int index)
+        public override IAction GetAction(int index)
         {
             if (index >= 0 && index < data.Actions.Count)
             {
@@ -211,7 +211,7 @@ namespace Data
             return null;
         }
 
-        public IEnumerable<IAction> GetAllActions()
+        public override IEnumerable<IAction> GetAllActions()
         {
             return data.Actions;
         }

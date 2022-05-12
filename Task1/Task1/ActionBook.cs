@@ -31,7 +31,7 @@ namespace Data
         }
     }
 
-    public class RentBook : ActionBook, IRentBook
+    internal class RentBook : ActionBook, IRentBook
     {
         public IReader Reader { get; set; }
         public RentBook(DateTime date, IBook book, IReader reader) : base(date, book) 
@@ -42,10 +42,9 @@ namespace Data
         {
             return ActionType.RentBook;
         }
-
     }
 
-    public class ReturnBook : ActionBook, IReturnBook
+    internal class ReturnBook : ActionBook, IReturnBook
     {
         public IReader Reader { get; set; }
         public ReturnBook(DateTime date, IBook book, IReader reader) : base(date, book)

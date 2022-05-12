@@ -12,7 +12,7 @@ namespace Tests
         [TestInitialize]
         public void Fill()
         {
-            dataRepository = new DataRepository(new TestFillStatic()); // tu trzeba poprawic
+          dataRepository = IDataRepository.CreateDataRepository(new TestFillStatic());
         }
 
         [TestMethod]

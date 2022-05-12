@@ -8,7 +8,6 @@ namespace Data
 {
     public interface IRentBook : IAction
     {
-      //  IReader reader { get; }
-
+        
     }
 }

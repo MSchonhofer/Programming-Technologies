@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Data
 {
-    public interface IFill
+    public abstract class IFill
     {
-        void Fill(IDataRepository dataRepository);
+        public abstract void Fill(IDataRepository dataRepository);
     }
 }
