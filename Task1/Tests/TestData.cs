@@ -2,9 +2,41 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Data.API;
 using Data.Impl;
 using System.Linq;
+using System.Collections.Generic;
+using System;
+using System.Text;
 
 namespace Tests
 {
+    internal class Reader : IReader
+    {
+        public int ReaderID { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public List<IBook> Books { get; set; }
+        internal Reader(int readerID, string name, string surname)
+        {
+            ReaderID = readerID;
+            Name = name;
+            Surname = surname;
+            Books = new List<IBook>();
+        }
+    }
+
+    internal class Catalog : ICatalog
+    {
+        public String Author { get; set; }
+        public String Title { get; set; }
+        public List<IBook> Books { get; set; }
+
+        public Catalog(string author, string title)
+        {
+            Author = author;
+            Title = title;
+            Books = new List<IBook>();
+        }
+
+    }
     [TestClass]
     public class TestData
     {
@@ -70,7 +102,7 @@ namespace Tests
             Assert.IsTrue(dataRepository.GetAllReaders().ToList().Count == 4);
 
 
-           IReader r = new(99, "Nick", "Jones"); // tu trzeba poprawic
+           IReader r = new Reader(99, "Nick", "Jones"); // tu trzeba poprawic
             dataRepository.UpdateReader(90, r);
 
             Assert.IsTrue(dataRepository.GetReader(99).Name.Equals("Nick"));

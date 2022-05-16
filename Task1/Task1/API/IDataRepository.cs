@@ -39,7 +39,5 @@ namespace Data.API
         {
             return new DataRepository(fill);
         }
-
-        public abstract void AddReader(Reader reader);
     }
 }
