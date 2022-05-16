@@ -6,7 +6,7 @@ namespace Logic.API
 
     public abstract class ILibrary
     {
-        public abstract void RentBook(string author, string title, IReader reader);
+        public abstract IBook RentBook(string author, string title, IReader reader);
         public abstract void ReturnBook(IBook book, IReader reader);
 
 
