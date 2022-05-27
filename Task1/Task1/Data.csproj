@@ -7,4 +7,27 @@
 	<RootNamespace>Data</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="System.Data.Linq" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{3259aa49-8aa1-44d3-9025-a0b520596a8c}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="LINQdatabase.designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LINQdatabase.dbml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LINQdatabase.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>LINQdatabase.designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
 </Project>

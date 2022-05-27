@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "..\Task1\Logic\Log
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "..\Task1\Tests\Tests.csproj", "{37BC2121-E951-4ACF-A21B-6B0458EB4B5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{442E9B26-D624-402B-A63E-38A3E1A4A46A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{97003924-3E0D-44D2-AA2F-B291E71CC585}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{37BC2121-E951-4ACF-A21B-6B0458EB4B5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37BC2121-E951-4ACF-A21B-6B0458EB4B5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37BC2121-E951-4ACF-A21B-6B0458EB4B5C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{442E9B26-D624-402B-A63E-38A3E1A4A46A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{442E9B26-D624-402B-A63E-38A3E1A4A46A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{442E9B26-D624-402B-A63E-38A3E1A4A46A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{442E9B26-D624-402B-A63E-38A3E1A4A46A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97003924-3E0D-44D2-AA2F-B291E71CC585}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97003924-3E0D-44D2-AA2F-B291E71CC585}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97003924-3E0D-44D2-AA2F-B291E71CC585}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97003924-3E0D-44D2-AA2F-B291E71CC585}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
