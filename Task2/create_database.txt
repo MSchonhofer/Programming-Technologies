@@ -1,7 +1,0 @@
-CREATE TABLE Users(
-	reader_id INT NOT NULL,
-	reader_first_name VARCHAR(50),
-	reader_last_name VARCHAR(50),
-	
-	CONSTRAINT customer_PK PRIMARY KEY (reader_id)
-);

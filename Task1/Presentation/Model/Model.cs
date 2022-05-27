@@ -13,10 +13,11 @@ namespace Presentation.Model
 
         public Model(ILibrary library = default(ILibrary))
         {
-            if(library == null)
+            if (library == null)
             {
                 this.library = ILibrary.CreateLogic();
-            } else
+            }
+            else
             {
                 this.library = library;
             }

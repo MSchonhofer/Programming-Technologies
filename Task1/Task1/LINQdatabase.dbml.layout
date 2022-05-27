@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LINQdatabase">
+  <DataContextMoniker Name="/LINQdatabaseDataContext" />
+  <nestedChildShapes>
+    <classShape Id="866300e9-71f3-4796-bcd8-189e09766c78" absoluteBounds="0.5, 3.125, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/LINQdatabaseDataContext/Action" />
+      <nestedChildShapes>
+        <elementListCompartment Id="99217ae8-60cf-4b3a-8f34-055b50de909d" absoluteBounds="0.51500000000000012, 3.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="170069ec-f843-4df0-93ed-d4ee600d6b99" absoluteBounds="3.875, 3, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/LINQdatabaseDataContext/Reader" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d4d47573-9915-44b1-bdfb-3bf9e6bf08de" absoluteBounds="3.89, 3.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="be22d31f-c281-4bee-bc1d-2bba308b696c" absoluteBounds="3.75, 1.25, 2, 1.0016910807291666">
+      <DataClassMoniker Name="/LINQdatabaseDataContext/Book" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f87d01ba-0f39-4009-997e-b5655f711f50" absoluteBounds="3.7650000000000006, 1.71, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="17e1c677-ad3b-4941-819c-9c3d007ffdcb" absoluteBounds="7.375, 3, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/LINQdatabaseDataContext/Catalog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bfbbe7e1-8639-45a5-99b2-c694297d043f" absoluteBounds="7.3900000000000006, 3.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.8125 : 2.25169108072917); (4.8125 : 3)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LINQdatabaseDataContext/Book/Book_Reader" />
+      <nodes>
+        <classShapeMoniker Id="be22d31f-c281-4bee-bc1d-2bba308b696c" />
+        <classShapeMoniker Id="170069ec-f843-4df0-93ed-d4ee600d6b99" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 1.75084554036458); (8.375 : 1.75084554036458); (8.375 : 3)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LINQdatabaseDataContext/Book/Book_Catalog" />
+      <nodes>
+        <classShapeMoniker Id="be22d31f-c281-4bee-bc1d-2bba308b696c" />
+        <classShapeMoniker Id="17e1c677-ad3b-4941-819c-9c3d007ffdcb" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.75 : 1.75084554036458); (1.5 : 1.75084554036458); (1.5 : 3.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LINQdatabaseDataContext/Book/Book_Action" />
+      <nodes>
+        <classShapeMoniker Id="be22d31f-c281-4bee-bc1d-2bba308b696c" />
+        <classShapeMoniker Id="866300e9-71f3-4796-bcd8-189e09766c78" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
