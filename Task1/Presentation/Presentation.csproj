@@ -11,5 +11,9 @@
 		<ProjectReference Include="..\Task1\Data.csproj" />
 		<ProjectReference Include="..\Logic\Logic.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Model\Interfaces\" />
+	</ItemGroup>
 	
 </Project>
