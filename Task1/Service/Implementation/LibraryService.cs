@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Service.API;
 using Data.API;
 using System.Collections;
+using ICatalog = Data.API.ICatalog;
 
 namespace Service.Implementation
 {
@@ -17,93 +18,107 @@ namespace Service.Implementation
             this.DataRepository = dataRepository;
         }
 
-        public async Task AddCatalog(API.ICatalog catalog)
+        public void AddCatalog(ICatalog catalog)
         {
-            await Task DataRepository.AddCatalog(new Catalog(catalog.Author, catalog.Title));
+            DataRepository.AddCatalog(catalog);
         }
 
-        public async Task AddReader(API.IReader reader)
+        public void AddReader(Data.API.IReader reader)
         {
-            await DataRepository.AddReader(new Reader(reader.ReaderID, reader.Name, reader.Surname)); 
+            DataRepository.AddReader(reader);
         }
 
-        public async Task DeleteCatalog(int index)
+        public void DeleteCatalog(int index)
         {
-            return DataRepository.DeleteCatalog(index);
+            DataRepository.DeleteCatalog(index);
         }
 
-        public Task DeleteCatalog(string author, string title)
+        public void DeleteCatalog(string author, string title)
         {
-            return DataRepository.DeleteCatalog(author, title);
+            DataRepository.DeleteCatalog(author, title);
         }
 
-        public Task DeleteReader(int id)
+        public void DeleteReader(int id)
         {
-            return DataRepository.DeleteReader(id);
+            DataRepository.DeleteReader(id);
         }
 
-        // to be done
-        public Task DeleteRent(string id)
+        public IEnumerable<API.ICatalog> GetAllCatalogs()
         {
-            throw new NotImplementedException();
+            var catalogs = DataRepository.GetAllCatalogs();
+            var catalogList = new List<API.ICatalog>();
+
+            foreach (var catalog in catalogs)
+            {
+                catalogList.Add(new Catalog(catalog.Author, catalog.Title));
+            }
+            return catalogList;
         }
 
-        // to be done
-        public Task DeleteReturn(string id)
+        public IEnumerable GetAllReaders()
         {
-            throw new NotImplementedException();
+            var readers = DataRepository.GetAllReaders();
+            var readersList = new List<API.Readers>();
+
+            foreach (var reader in readers)
+            {
+                readersList.Add(new Reader(reader.ReaderID, reader.Name, reader.Surname));
+            }
+
+            return readersList;
         }
 
-        public Task<IEnumerable<API.ICatalog>> GetAllCatalogs()
+        public API.ICatalog GetCatalog(string author, string title)
         {
-            return DataRepository.GetAllCatalogs();
+            return (API.ICatalog)DataRepository.GetCatalog(author, title);
         }
 
-        public Task<IEnumerable> GetAllReaders()
+        public API.ICatalog GetCatalog(int index)
         {
-            return DataRepository.GetAllReaders();
+            return (API.ICatalog)DataRepository.GetCatalog(index);
         }
 
-        public Task GetCatalog(int index)
+        public API.IReader GetReader(int id)
         {
-            throw new NotImplementedException();
+            return (API.IReader)DataRepository.GetReader(id);
+        }
+        public IBook RentBook(string author, string title, API.IReader reader)
+        {
+            ICatalog catalog = DataRepository.GetCatalog(author, title);
+            IBook book = DataRepository.GetBook(catalog);
+            if (book != null)
+            {
+                catalog.Books.Remove(book);
+                reader.Books.Add(book);
+            }
+            return book;
+        }
+        public void ReturnBook(IBook book, API.IReader reader)
+        {
+            if (reader.Books.Contains(book))
+            {
+                book.Catalog.Books.Add(book);
+                reader.Books.Remove(book);
+            }
         }
 
-        public Task GetCatalog(string author, string title)
+        public void UpdateCatalog(int index, ICatalog catalog)
         {
-            throw new NotImplementedException();
+            DataRepository.UpdateCatalog(index, catalog);
         }
 
-        public Task GetReader(int id)
+        public void UpdateCatalog(string author, string title, ICatalog catalog)
         {
-            throw new NotImplementedException();
+            DataRepository.UpdateCatalog(author, title, catalog);
         }
 
-        public Task RentBook(API.IRentBook book)
+        public void UpdateReader(int id, IReader reader)
         {
-            throw new NotImplementedException();
+            DataRepository.UpdateReader(id, reader);
         }
 
-        public Task ReturnBook(API.IReturnBook book)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateCatalog(int index, API.ICatalog catalog)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateCatalog(string author, string title, API.ICatalog catalog)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateReader(int id, API.IReader reader)
+        public void UpdateReader(int id, Data.API.IReader reader)
         {
             throw new NotImplementedException();
         }
     }
-
-
-}
