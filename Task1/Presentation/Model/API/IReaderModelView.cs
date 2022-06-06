@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.Model
+namespace Presentation.Model
 {
-    internal class ReaderModel
+    internal interface IReaderModelView
     {
     }
 }

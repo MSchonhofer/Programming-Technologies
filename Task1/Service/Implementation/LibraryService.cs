@@ -7,6 +7,7 @@ using Service.API;
 using Data.API;
 using System.Collections;
 using ICatalog = Data.API.ICatalog;
+using IReader = Data.API.IReader;
 
 namespace Service.Implementation
 {
@@ -50,7 +51,8 @@ namespace Service.Implementation
 
             foreach (var catalog in catalogs)
             {
-                catalogList.Add(new Catalog(catalog.Author, catalog.Title));
+                Catalog catalog1 = new Catalog(catalog.Author, catalog.Title);
+                catalogList.Add((API.ICatalog)catalog1);
             }
             return catalogList;
         }
@@ -58,11 +60,12 @@ namespace Service.Implementation
         public IEnumerable GetAllReaders()
         {
             var readers = DataRepository.GetAllReaders();
-            var readersList = new List<API.Readers>();
+            var readersList = new List<API.IReader>();
 
             foreach (var reader in readers)
             {
-                readersList.Add(new Reader(reader.ReaderID, reader.Name, reader.Surname));
+                Reader reader1 = new Reader(reader.ReaderID, reader.Name, reader.Surname);
+                readersList.Add((API.IReader)reader1);
             }
 
             return readersList;
@@ -115,10 +118,5 @@ namespace Service.Implementation
         public void UpdateReader(int id, IReader reader)
         {
             DataRepository.UpdateReader(id, reader);
-        }
-
-        public void UpdateReader(int id, Data.API.IReader reader)
-        {
-            throw new NotImplementedException();
         }
     }
