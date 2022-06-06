@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using Data.Impl;
 
 namespace Data.API
@@ -29,7 +28,7 @@ namespace Data.API
         //books
         public abstract IBook GetBook(ICatalog catalog);
         public abstract void AddBook(IBook book);
-        //public abstract int ValidBookID; // co z tym zrobic?
+        //public abstract int ValidBookID; // co z tym?
 
         //actions
         public abstract void AddAction(IAction action);

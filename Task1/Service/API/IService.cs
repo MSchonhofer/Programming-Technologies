@@ -31,11 +31,11 @@ namespace Service.API
         IEnumerable GetAllReaders();
         #endregion
 
-        #region Rent
+        #region RentBook
         IBook RentBook(string author, string title, IReader reader);
         #endregion
 
-        #region Return
+        #region ReturnBook
         void ReturnBook(IBook book, IReader reader);
         #endregion
 
