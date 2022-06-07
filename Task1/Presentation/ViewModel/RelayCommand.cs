@@ -9,6 +9,13 @@ namespace Presentation.ViewModel
 {
     public class RelayCommand : ICommand
     {
+        public RelayCommand(Action Execute) : this(Execute, null) { }
+        public RelayCommand(Action Execute, Func<bool> canExecute)
+        {
+            _execute = Execute ?? throw new ArgumentNullException(nameof(Execute));
+            _CanExecute = canExecute;
+        }
+
         private readonly Action _execute;
         private readonly Func<bool> _CanExecute;
         public event EventHandler CanExecuteChanged;
