@@ -13,7 +13,9 @@ namespace Service.API
         string Title { get; set; }
         List<IBook> Books { get; set; }
 
+        /*
         Task MakeAsync();
         Task DeleteAsync();
+        */
     }
 }
