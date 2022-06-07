@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="library" Class="LINQToSQLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.Action" Member="Action">
+    <Type Name="Action">
+      <Column Name="ActionType" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BookID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Book_Action" Member="Book" ThisKey="BookID" OtherKey="BookID" Type="Book" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Book" Member="Book">
+    <Type Name="Book">
+      <Column Name="BookID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Book_Action" Member="Action" ThisKey="BookID" OtherKey="BookID" Type="Action" />
+      <Association Name="Book_Catalog" Member="Catalog" ThisKey="BookID" OtherKey="BookID" Type="Catalog" />
+      <Association Name="Book_Reader" Member="Reader" ThisKey="BookID" OtherKey="BookID" Type="Reader" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Catalog" Member="Catalog">
+    <Type Name="Catalog">
+      <Column Name="Title" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Author" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BookID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Book_Catalog" Member="Book" ThisKey="BookID" OtherKey="BookID" Type="Book" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reader" Member="Reader">
+    <Type Name="Reader">
+      <Column Name="ReaderID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Surname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BookID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Book_Reader" Member="Book" ThisKey="BookID" OtherKey="BookID" Type="Book" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

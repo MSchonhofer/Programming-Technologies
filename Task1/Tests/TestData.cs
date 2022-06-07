@@ -88,9 +88,9 @@ namespace Tests
         {
 
             Assert.IsTrue(dataRepository.GetAllReaders().ToList().Count == 3);
-            dataRepository.AddReaderAsync(new Reader(90, "Morgan", "Welsh")); // tu trzeba poprawic
+            dataRepository.AddReader(new Reader(90, "Morgan", "Welsh")); // tu trzeba poprawic
             Assert.IsTrue(dataRepository.GetAllReaders().ToList().Count == 4);
-            dataRepository.AddReaderAsync(new Reader(91, "Cole", "Miller")); // tu trzeba poprawic
+            dataRepository.AddReader(new Reader(91, "Cole", "Miller")); // tu trzeba poprawic
             Assert.IsTrue(dataRepository.GetAllReaders().ToList().Count == 5);
 
             Assert.IsTrue(dataRepository.GetReader(91).Name.Equals("Cole"));
@@ -117,7 +117,7 @@ namespace Tests
         {
 
             Assert.IsTrue(dataRepository.GetAllCatalogs().ToList().Count == 3);
-            dataRepository.AddCatalogAsync(new Catalog("test1", "test2")); // to be changed 
+            dataRepository.AddCatalog(new Catalog("test1", "test2")); // to be changed 
             Assert.IsTrue(dataRepository.GetAllCatalogs().ToList().Count == 4);
 
             Assert.IsTrue(dataRepository.GetCatalog(3).Author.Equals("test1"));

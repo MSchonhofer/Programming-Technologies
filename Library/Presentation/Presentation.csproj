@@ -5,13 +5,11 @@
     <TargetFramework>net48</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-	  <LangVersion>8.0</LangVersion>
+	  <LangVersion>10.0</LangVersion>
   </PropertyGroup>
-
 	<ItemGroup>
-		<ProjectReference Include="..\Task1\Data.csproj" />
-		<ProjectReference Include="..\Logic\Logic.csproj" />
+		<ProjectReference Include="..\Data\Data.csproj" />
 		<ProjectReference Include="..\Service\Service.csproj" />
 	</ItemGroup>
-	
+
 </Project>

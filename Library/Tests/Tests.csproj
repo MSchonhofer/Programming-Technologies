@@ -1,17 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
     <TargetFramework>net48</TargetFramework>
     <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
-	  <LangVersion>8.0</LangVersion>
+	  <LangVersion>10.0</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
+  </ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\Task1\Data.csproj" />
-		<ProjectReference Include="..\Logic\Logic.csproj" />
+		<ProjectReference Include="..\Data\Data.csproj" />
 		<ProjectReference Include="..\Service\Service.csproj" />
 	</ItemGroup>
-	
 </Project>
