@@ -57,7 +57,7 @@ namespace Service.Implementation
             return catalogList;
         }
 
-        public IEnumerable GetAllReaders()
+        public IEnumerable<API.IReader> GetAllReaders()
         {
             var readers = DataRepository.GetAllReaders();
             var readersList = new List<API.IReader>();
@@ -120,3 +120,4 @@ namespace Service.Implementation
             DataRepository.UpdateReader(id, reader);
         }
     }
+}

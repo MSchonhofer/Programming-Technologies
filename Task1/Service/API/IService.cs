@@ -28,7 +28,7 @@ namespace Service.API
         void UpdateReader(int id, Data.API.IReader reader);
         void DeleteReader(int id);
         IReader GetReader(int id);
-        IEnumerable GetAllReaders();
+        IEnumerable<IReader> GetAllReaders();
         #endregion
 
         #region RentBook
