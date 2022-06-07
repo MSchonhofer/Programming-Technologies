@@ -48,6 +48,37 @@ namespace Presentation.ViewModel
             get { return surname; }
             set { surname = value; OnPropertyChanged("Surname"); }
         }
+        private Data.API.IReader reader;
+        public Data.API.IReader Reader {
+            get { return reader; }
+            set { reader = value; OnPropertyChanged("Reader"); }
+        }
+
+        public void AddReader()
+        {
+            service.AddReader(reader);
+            text = "New reader added.";
+            MessageBox(text);
+        }
+        public void UpdateReader()
+        {
+            service.UpdateReader(Id, reader);
+            text = "Reader updated";
+            MessageBox(text);
+        }
+
+        public void DeleteReader()
+        {
+            service.DeleteReader(Id);
+            text = "Reader deleted.";
+            MessageBox(text);
+        }
+        private IEnumerable<IReader> readers;
+        public IEnumerable<IReader> Readers
+        {
+            get { return readers; }
+            set { readers = value; OnPropertyChanged("Readers"); }
+        }
 
     }
     
