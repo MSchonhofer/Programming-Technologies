@@ -12,9 +12,5 @@
 		<ProjectReference Include="..\Logic\Logic.csproj" />
 		<ProjectReference Include="..\Service\Service.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Model\Interfaces\" />
-	</ItemGroup>
 	
 </Project>
