@@ -8,34 +8,34 @@ using Service.Implementation;
 
 namespace Service.API
 {
-    public interface IService
+    public abstract class IService
     {
         #region Catalog
-        void AddCatalog(Data.API.ICatalog catalog);
-        ICatalog GetCatalog(string author, string title);
-        ICatalog GetCatalog(int index);
-        IEnumerable<ICatalog> GetAllCatalogs();
-        void UpdateCatalog(int index, Data.API.ICatalog catalog);
-        void UpdateCatalog(string author, string title, Data.API.ICatalog catalog);
-        void DeleteCatalog(int index);
-        void DeleteCatalog(string author, string title);
+        public abstract void AddCatalog(Data.API.ICatalog catalog);
+        public abstract ICatalog GetCatalog(string author, string title);
+        public abstract ICatalog GetCatalog(int index);
+        public abstract IEnumerable<ICatalog> GetAllCatalogs();
+        public abstract void UpdateCatalog(int index, Data.API.ICatalog catalog);
+        public abstract void UpdateCatalog(string author, string title, Data.API.ICatalog catalog);
+        public abstract void DeleteCatalog(int index);
+        public abstract void DeleteCatalog(string author, string title);
 
         #endregion
 
         #region Reader
-        void AddReader(Data.API.IReader reader);
-        void UpdateReader(int id, Data.API.IReader reader);
-        void DeleteReader(int id);
-        IReader GetReader(int id);
-        IEnumerable<IReader> GetAllReaders();
+        public abstract void AddReader(Data.API.IReader reader);
+        public abstract void UpdateReader(int id, Data.API.IReader reader);
+        public abstract void DeleteReader(int id);
+        public abstract IReader GetReader(int id);
+        public abstract IEnumerable<IReader> GetAllReaders();
         #endregion
 
         #region RentBook
-        IBook RentBook(string author, string title, IReader reader);
+        public abstract IBook RentBook(string author, string title, IReader reader);
         #endregion
 
         #region ReturnBook
-        void ReturnBook(IBook book, IReader reader);
+        public abstract void ReturnBook(IBook book, IReader reader);
         #endregion
 
         public static IService CreateService(IDataRepository? dataRepository = default)

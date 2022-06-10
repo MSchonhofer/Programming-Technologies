@@ -13,38 +13,39 @@ namespace Service.Implementation
 {
     internal class LibraryService : IService
     {
+        
         private IDataRepository DataRepository;
         internal LibraryService(IDataRepository dataRepository)
         {
             this.DataRepository = dataRepository;
         }
 
-        public void AddCatalog(ICatalog catalog)
+        public override void AddCatalog(ICatalog catalog)
         {
             DataRepository.AddCatalog(catalog);
         }
 
-        public void AddReader(Data.API.IReader reader)
+        public override void AddReader(Data.API.IReader reader)
         {
             DataRepository.AddReader(reader);
         }
 
-        public void DeleteCatalog(int index)
+        public override void DeleteCatalog(int index)
         {
             DataRepository.DeleteCatalog(index);
         }
 
-        public void DeleteCatalog(string author, string title)
+        public override void DeleteCatalog(string author, string title)
         {
             DataRepository.DeleteCatalog(author, title);
         }
 
-        public void DeleteReader(int id)
+        public override void DeleteReader(int id)
         {
             DataRepository.DeleteReader(id);
         }
 
-        public IEnumerable<API.ICatalog> GetAllCatalogs()
+        public override IEnumerable<API.ICatalog> GetAllCatalogs()
         {
             var catalogs = DataRepository.GetAllCatalogs();
             var catalogList = new List<API.ICatalog>();
@@ -57,7 +58,7 @@ namespace Service.Implementation
             return catalogList;
         }
 
-        public IEnumerable<API.IReader> GetAllReaders()
+        public override IEnumerable<API.IReader> GetAllReaders()
         {
             var readers = DataRepository.GetAllReaders();
             var readersList = new List<API.IReader>();
@@ -71,21 +72,21 @@ namespace Service.Implementation
             return readersList;
         }
 
-        public API.ICatalog GetCatalog(string author, string title)
+        public override API.ICatalog GetCatalog(string author, string title)
         {
             return (API.ICatalog)DataRepository.GetCatalog(author, title);
         }
 
-        public API.ICatalog GetCatalog(int index)
+        public override API.ICatalog GetCatalog(int index)
         {
             return (API.ICatalog)DataRepository.GetCatalog(index);
         }
 
-        public API.IReader GetReader(int id)
+        public override API.IReader GetReader(int id)
         {
             return (API.IReader)DataRepository.GetReader(id);
         }
-        public IBook RentBook(string author, string title, API.IReader reader)
+        public override IBook RentBook(string author, string title, API.IReader reader)
         {
             ICatalog catalog = DataRepository.GetCatalog(author, title);
             IBook book = DataRepository.GetBook(catalog);
@@ -96,7 +97,7 @@ namespace Service.Implementation
             }
             return book;
         }
-        public void ReturnBook(IBook book, API.IReader reader)
+        public override void ReturnBook(IBook book, API.IReader reader)
         {
             if (reader.Books.Contains(book))
             {
@@ -105,19 +106,20 @@ namespace Service.Implementation
             }
         }
 
-        public void UpdateCatalog(int index, ICatalog catalog)
+        public override void UpdateCatalog(int index, ICatalog catalog)
         {
             DataRepository.UpdateCatalog(index, catalog);
         }
 
-        public void UpdateCatalog(string author, string title, ICatalog catalog)
+        public override void UpdateCatalog(string author, string title, ICatalog catalog)
         {
             DataRepository.UpdateCatalog(author, title, catalog);
         }
 
-        public void UpdateReader(int id, IReader reader)
+        public override void UpdateReader(int id, IReader reader)
         {
             DataRepository.UpdateReader(id, reader);
         }
+        
     }
 }
