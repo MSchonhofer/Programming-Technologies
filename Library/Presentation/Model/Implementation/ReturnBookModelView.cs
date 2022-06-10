@@ -1,5 +1,5 @@
 ﻿using Presentation.Model.API;
-using Service.API;
+using Data.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +10,12 @@ namespace Presentation.Model.Implementation
 {
     internal class ReturnBookModelView : IReturnBookModelView
     {
-        public string Author { get; set; }
-        public string Title { get; set; }
+        public IBook book { get; set; }
         public IReader Reader { get; set; }
 
-        public ReturnBookModelView(string author, string title, IReader reader)
+        public ReturnBookModelView(IBook book, IReader reader)
         {
-            Author = author;
-            Title = title;
+            this.book = book;
             Reader = reader;
         }
     }

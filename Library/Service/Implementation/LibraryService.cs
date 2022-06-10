@@ -86,7 +86,7 @@ namespace Service.Implementation
         {
             return (API.IReader)DataRepository.GetReader(id);
         }
-        public override IBook RentBook(string author, string title, API.IReader reader)
+        public override IBook RentBook(string author, string title, Data.API.IReader reader)
         {
             ICatalog catalog = DataRepository.GetCatalog(author, title);
             IBook book = DataRepository.GetBook(catalog);
@@ -97,7 +97,7 @@ namespace Service.Implementation
             }
             return book;
         }
-        public override void ReturnBook(IBook book, API.IReader reader)
+        public override void ReturnBook(IBook book, Data.API.IReader reader)
         {
             if (reader.Books.Contains(book))
             {

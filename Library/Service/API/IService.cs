@@ -31,11 +31,11 @@ namespace Service.API
         #endregion
 
         #region RentBook
-        public abstract IBook RentBook(string author, string title, IReader reader);
+        public abstract IBook RentBook(string author, string title, Data.API.IReader reader);
         #endregion
 
         #region ReturnBook
-        public abstract void ReturnBook(IBook book, IReader reader);
+        public abstract void ReturnBook(IBook book, Data.API.IReader reader);
         #endregion
 
         public static IService CreateService(IDataRepository? dataRepository = default)

@@ -11,6 +11,6 @@ namespace Presentation.Model.API
     {
         public string Author { get; set; }
         public string Title { get; set; }
-        public IReader reader { get; set; }
+        public IReader Reader { get; set; }
     }
 }

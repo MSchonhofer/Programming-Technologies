@@ -1,4 +1,5 @@
 ﻿using Presentation.Model.API;
+using Data.API;
 using Service.API;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,9 @@ namespace Presentation.Model.Implementation
             this.service = service;
         }
 
-        public IReturnBookModelView CreateReturn(string author, string title, IReader reader)
+        public IReturnBookModelView CreateReturn(IBook book, Data.API.IReader reader)
         {
-            return new ReturnBookModelView(author, title, reader);
+            return new ReturnBookModelView(book, reader);
         }
     }
 }
