@@ -1,4 +1,4 @@
-﻿using Data.API;
+﻿using Service.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,8 @@ namespace Presentation.Model.API
 {
     public interface IRentBookModelView
     {
-        IBook RentBook(string author, string title, IReader reader);
+        public string Author { get; set; }
+        public string Title { get; set; }
+        public IReader reader { get; set; }
     }
 }
