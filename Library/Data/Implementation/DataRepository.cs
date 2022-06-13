@@ -194,6 +194,7 @@ namespace Data.Impl
          {
              get { return data.ValidBookID; }
          }
+         
         */
         #endregion
 
