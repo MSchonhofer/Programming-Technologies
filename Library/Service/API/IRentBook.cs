@@ -9,6 +9,7 @@ namespace Service.API
 {
     public interface IRentBook
     {
+        
         public IBook RentBook(string author, string title, IReader reader);
     
     }
