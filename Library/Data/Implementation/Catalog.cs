@@ -7,7 +7,6 @@ using Data.API;
 
 namespace Data.Impl
 {
-
     [Serializable]
 
     internal class Catalog : ICatalog
