@@ -117,7 +117,7 @@ namespace Tests
         {
 
             Assert.IsTrue(dataRepository.GetAllCatalogs().ToList().Count == 3);
-            dataRepository.AddCatalog(new Catalog("test1", "test2")); // to be changed 
+            dataRepository.AddCatalog(new Catalog("test1", "test2")); // do poprawy
             Assert.IsTrue(dataRepository.GetAllCatalogs().ToList().Count == 4);
 
             Assert.IsTrue(dataRepository.GetCatalog(3).Author.Equals("test1"));
