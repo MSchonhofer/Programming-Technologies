@@ -72,14 +72,14 @@ namespace Service.Implementation
             return readersList;
         }
 
-        public override API.ICatalog GetCatalog(string author, string title)
+        public override Data.API.ICatalog GetCatalog(string author, string title)
         {
-            return (API.ICatalog)DataRepository.GetCatalog(author, title);
+            return (Data.API.ICatalog)DataRepository.GetCatalog(author, title);
         }
 
-        public override API.ICatalog GetCatalog(int index)
+        public override Data.API.ICatalog GetCatalog(int index)
         {
-            return (API.ICatalog)DataRepository.GetCatalog(index);
+            return (Data.API.ICatalog)DataRepository.GetCatalog(index);
         }
 
         public override Data.API.IReader GetReader(int id)

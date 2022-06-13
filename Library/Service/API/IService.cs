@@ -12,8 +12,8 @@ namespace Service.API
     {
         #region Catalog
         public abstract void AddCatalog(Data.API.ICatalog catalog);
-        public abstract ICatalog GetCatalog(string author, string title);
-        public abstract ICatalog GetCatalog(int index);
+        public abstract Data.API.ICatalog GetCatalog(string author, string title);
+        public abstract Data.API.ICatalog GetCatalog(int index);
         public abstract IEnumerable<ICatalog> GetAllCatalogs();
         public abstract void UpdateCatalog(int index, Data.API.ICatalog catalog);
         public abstract void UpdateCatalog(string author, string title, Data.API.ICatalog catalog);
