@@ -14,6 +14,9 @@ namespace Presentation.ViewModel
         public ReaderViewModel(IService service)
         {
             this.service = service;
+            AddReaderCommand = new RelayCommand(AddReader);
+            UpdateReaderCommand = new RelayCommand(UpdateReader);
+            DeleteReaderCommand = new RelayCommand(DeleteReader);
 
         }
         public RelayCommand AddReaderCommand { get; private set; }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Presentation.ViewModel
 {
-    internal class ReturnBookViewModel : ViewModelBase
+    public class ReturnBookViewModel : ViewModelBase
     {
         private IService service;
         public ReturnBookViewModel(IService service)

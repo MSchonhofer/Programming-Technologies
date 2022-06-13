@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Presentation.ViewModel
 {
-    internal class CatalogViewModel : ViewModelBase
+    public class CatalogViewModel : ViewModelBase
     {
         private IService service;
         public CatalogViewModel(IService service)
@@ -19,7 +19,6 @@ namespace Presentation.ViewModel
             UpdateCatalogByIndexCommand = new RelayCommand(UpdateCatalogByIndex);
             DeleteCatalogByIndexCommand = new RelayCommand(DeleteCatalogByIndex);
             DeleteCatalogByTitleCommand = new RelayCommand(DeleteCatalogByTitle);
-
         }
         public RelayCommand AddCatalogCommand { get; private set; }
         public RelayCommand DeleteCatalogByIndexCommand { get; private set; }
