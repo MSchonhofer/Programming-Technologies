@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data.API;
+using Service.API;
+using IReader = Service.API.IReader;
 
 namespace Service.Implementation
 {

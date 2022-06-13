@@ -26,7 +26,7 @@ namespace Service.API
         public abstract void AddReader(Data.API.IReader reader);
         public abstract void UpdateReader(int id, Data.API.IReader reader);
         public abstract void DeleteReader(int id);
-        public abstract IReader GetReader(int id);
+        public abstract Data.API.IReader GetReader(int id);
         public abstract IEnumerable<IReader> GetAllReaders();
         #endregion
 

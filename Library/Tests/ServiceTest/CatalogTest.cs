@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Data.API;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Service.API;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Data.API;
-using Service.API;
-using ICatalog = Service.API.ICatalog;
 
-namespace Service.Implementation
+namespace Tests.ServiceTest
 {
-    internal class Catalog : ICatalog
+    internal class Catalog : Service.API.ICatalog
     {
         public String Author { get; set; }
         public String Title { get; set; }
@@ -21,5 +21,11 @@ namespace Service.Implementation
             Title = title;
             Books = new List<IBook>();
         }
+    }
+    [TestClass]
+    public class CatalogTest
+    {
+        private IDataRepository? dataRepository;
+        private IService? service;
     }
 }

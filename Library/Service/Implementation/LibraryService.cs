@@ -82,9 +82,9 @@ namespace Service.Implementation
             return (API.ICatalog)DataRepository.GetCatalog(index);
         }
 
-        public override API.IReader GetReader(int id)
+        public override Data.API.IReader GetReader(int id)
         {
-            return (API.IReader)DataRepository.GetReader(id);
+            return (Data.API.IReader)DataRepository.GetReader(id);
         }
         public override IBook RentBook(string author, string title, Data.API.IReader reader)
         {
