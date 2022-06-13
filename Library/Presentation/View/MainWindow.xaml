@@ -7,6 +7,29 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <TextBlock x:Name="Catalog" HorizontalAlignment="Left" Margin="29,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"><Run Language="pl-pl" Text="Catalog"/></TextBlock>
+        <TextBox x:Name="TitleBox" HorizontalAlignment="Left" Margin="117,144,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="Title" HorizontalAlignment="Left" Margin="29,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Title"/>
+        <TextBlock x:Name="Author" HorizontalAlignment="Left" Margin="29,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="pl-pl" Text="Author"/></TextBlock>
+        <TextBox x:Name="AuthorBox" HorizontalAlignment="Left" Margin="117,182,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="Reader" HorizontalAlignment="Left" Margin="384,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"><Run Language="pl-pl" Text="Reader"/></TextBlock>
+        <TextBlock x:Name="Index" HorizontalAlignment="Left" Margin="29,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="pl-pl" Text="Index"/></TextBlock>
+        <TextBox x:Name="IndexBox" HorizontalAlignment="Left" Margin="117,213,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="Add" Content="Add" HorizontalAlignment="Left" Margin="343,307,0,0" VerticalAlignment="Top" Height="25" Width="107" Click="Add_Click"/>
+        <TextBox x:Name="NameBox" HorizontalAlignment="Left" Margin="479,145,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="Name" HorizontalAlignment="Left" Margin="391,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="pl-pl" Text="Name"/></TextBlock>
+        <TextBlock x:Name="Surname" HorizontalAlignment="Left" Margin="391,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="pl-pl" Text="Surname"/></TextBlock>
+        <TextBox x:Name="SurnameBox" HorizontalAlignment="Left" Margin="479,183,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="ReaderID" HorizontalAlignment="Left" Margin="391,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="pl-pl" Text="ID"/></TextBlock>
+        <TextBox x:Name="ReaderIDBox" HorizontalAlignment="Left" Margin="479,214,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="Book" HorizontalAlignment="Left" Margin="29,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"><Run Language="pl-pl" Text="Book"/></TextBlock>
+        <TextBox x:Name="BookBox" HorizontalAlignment="Left" Margin="117,347,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="BookID" HorizontalAlignment="Left" Margin="29,348,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="pl-pl" Text="ID"/></TextBlock>
+        <Button x:Name="Update" Content="Update" HorizontalAlignment="Left" Margin="343,346,0,0" VerticalAlignment="Top" Height="25" Width="107" Click="Button_Click"/>
+        <Button x:Name="Delete" Content="Delete" HorizontalAlignment="Left" Margin="343,385,0,0" VerticalAlignment="Top" Height="25" Width="107"/>
+        <Button x:Name="Rent" Content="Rent" HorizontalAlignment="Left" Margin="503,320,0,0" VerticalAlignment="Top" Height="25" Width="107" Click="Button_Click_1"/>
+        <Button x:Name="Return" Content="Return" HorizontalAlignment="Left" Margin="503,368,0,0" VerticalAlignment="Top" Height="25" Width="107"/>
+        <TextBox x:Name="MessageBox" HorizontalAlignment="Left" Margin="177,20,0,0" TextWrapping="Wrap" Text="MessageBox" VerticalAlignment="Top" Width="362" Height="39" TextChanged="MessageBox_TextChanged"/>
 
     </Grid>
 </Window>
