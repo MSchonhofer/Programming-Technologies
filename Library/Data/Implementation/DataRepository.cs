@@ -61,7 +61,6 @@ namespace Data.Impl
             return null;
         }
 
-
         public override ICatalog GetCatalog(int index)
         {
             if (index >= 0 && index < data.Catalogs.Count)
@@ -191,7 +190,7 @@ namespace Data.Impl
             }
         }
 
-        /* public override int ValidBookID //current valid book ID
+        /* public override int ValidBookID //current valid book ID?
          {
              get { return data.ValidBookID; }
          }
