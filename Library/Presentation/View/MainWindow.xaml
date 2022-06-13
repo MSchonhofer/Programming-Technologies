@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Presentation"
         xmlns:viem="clr-namespace:Presentation.ViewModel"
         Title="Library" Height="450" Width="800">
+    
     <Grid>
         <TextBlock x:Name="Catalog" HorizontalAlignment="Left" Margin="29,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"><Run Language="pl-pl" Text="Catalog"/></TextBlock>
         <TextBox x:Name="TitleBox" HorizontalAlignment="Left" Margin="117,144,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
