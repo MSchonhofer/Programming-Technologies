@@ -102,7 +102,7 @@ namespace Tests
             Assert.IsTrue(dataRepository.GetAllReaders().ToList().Count == 4);
 
 
-            IReader r = new Reader(99, "Nick", "Jones"); // tu trzeba poprawic
+            IReader r = new Reader(99, "Nick", "Jones"); //tu trzeba poprawic
             dataRepository.UpdateReader(90, r);
 
             Assert.IsTrue(dataRepository.GetReader(99).Name.Equals("Nick"));
