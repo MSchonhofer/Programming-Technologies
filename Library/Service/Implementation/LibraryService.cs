@@ -101,8 +101,8 @@ namespace Service.Implementation
         {
             if (reader.Books.Contains(book))
             {
-                book.Catalog.Books.Add(book);
                 reader.Books.Remove(book);
+                book.Catalog.Books.Add(book);
             }
         }
 
