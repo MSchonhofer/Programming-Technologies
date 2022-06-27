@@ -11,6 +11,6 @@ namespace Service.API
     {
         string Author { get; set; }
         string Title { get; set; }
-        List<IBook> Books { get; set; }
+        int CatalogID { get; set; }
     }
 }

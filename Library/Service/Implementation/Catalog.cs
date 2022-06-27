@@ -11,15 +11,15 @@ namespace Service.Implementation
 {
     internal class Catalog : ICatalog
     {
-        public String Author { get; set; }
-        public String Title { get; set; }
-        public List<IBook> Books { get; set; }
-
-        public Catalog(string author, string title)
+        public string Author { get; set; }
+        public string Title { get; set; }
+        public int CatalogID { get; set; }
+        public Catalog(int id, string author, string title)
         {
+            CatalogID = id;
             Author = author;
             Title = title;
-            Books = new List<IBook>();
         }
+
     }
 }

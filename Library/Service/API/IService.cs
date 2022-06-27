@@ -10,33 +10,25 @@ namespace Service.API
 {
     public abstract class IService
     {
-        #region Catalog
-        public abstract void AddCatalog(Data.API.ICatalog catalog);
-        public abstract Data.API.ICatalog GetCatalog(string author, string title);
-        public abstract Data.API.ICatalog GetCatalog(int index);
+        //catalogs
+        public abstract void AddCatalog(int id, string author, string title);
+        public abstract ICatalog GetCatalogByTitle(string title);
+        public abstract IEnumerable<ICatalog> GetCatalogByAuthor(string author);
+        public abstract ICatalog GetCatalogByID(int id);
         public abstract IEnumerable<ICatalog> GetAllCatalogs();
-        public abstract void UpdateCatalog(int index, Data.API.ICatalog catalog);
-        public abstract void UpdateCatalog(string author, string title, Data.API.ICatalog catalog);
-        public abstract void DeleteCatalog(int index);
-        public abstract void DeleteCatalog(string author, string title);
+        public abstract void UpdateCatalog(int id, string author, string name);
+        public abstract void DeleteCatalog(int id);
 
-        #endregion
-
-        #region Reader
-        public abstract void AddReader(Data.API.IReader reader);
-        public abstract void UpdateReader(int id, Data.API.IReader reader);
+        //readers
+        public abstract void AddReader(int id, string name, string surname);
+        public abstract IReader GetReader(int id);
+        public abstract void UpdateReader(int id, string name, string surname);
         public abstract void DeleteReader(int id);
-        public abstract Data.API.IReader GetReader(int id);
         public abstract IEnumerable<IReader> GetAllReaders();
-        #endregion
-
-        #region RentBook
-        public abstract IBook RentBook(string author, string title, Data.API.IReader reader);
-        #endregion
-
-        #region ReturnBook
-        public abstract void ReturnBook(IBook book, Data.API.IReader reader);
-        #endregion
+        //actions
+        public abstract void AddAction(int id, int cID, int rID);
+        public abstract IAction GetAction(int id);
+        public abstract IEnumerable<IAction> GetAllActions();
 
         public static IService CreateService(IDataRepository? dataRepository = default)
         {
