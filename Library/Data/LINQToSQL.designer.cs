@@ -30,19 +30,22 @@ namespace Data
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertAction(Action instance);
-    partial void UpdateAction(Action instance);
-    partial void DeleteAction(Action instance);
-    partial void InsertBook(Book instance);
-    partial void UpdateBook(Book instance);
-    partial void DeleteBook(Book instance);
-    partial void InsertCatalog(Catalog instance);
-    partial void UpdateCatalog(Catalog instance);
-    partial void DeleteCatalog(Catalog instance);
-    partial void InsertReader(Reader instance);
-    partial void UpdateReader(Reader instance);
-    partial void DeleteReader(Reader instance);
+    partial void InsertCatalogs(Catalogs instance);
+    partial void UpdateCatalogs(Catalogs instance);
+    partial void DeleteCatalogs(Catalogs instance);
+    partial void InsertReaders(Readers instance);
+    partial void UpdateReaders(Readers instance);
+    partial void DeleteReaders(Readers instance);
+    partial void InsertActions(Actions instance);
+    partial void UpdateActions(Actions instance);
+    partial void DeleteActions(Actions instance);
     #endregion
+		
+		public LINQToSQLDataContext() : 
+				base(global::Data.Properties.Settings.Default.libraryConnectionString, mappingSource)
+		{
+			OnCreated();
+		}
 		
 		public LINQToSQLDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -68,365 +71,84 @@ namespace Data
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Action> Action
+		public System.Data.Linq.Table<Catalogs> Catalogs
 		{
 			get
 			{
-				return this.GetTable<Action>();
+				return this.GetTable<Catalogs>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Book> Book
+		public System.Data.Linq.Table<Readers> Readers
 		{
 			get
 			{
-				return this.GetTable<Book>();
+				return this.GetTable<Readers>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Catalog> Catalog
+		public System.Data.Linq.Table<Actions> Actions
 		{
 			get
 			{
-				return this.GetTable<Catalog>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Reader> Reader
-		{
-			get
-			{
-				return this.GetTable<Reader>();
+				return this.GetTable<Actions>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Action")]
-	public partial class Action : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Catalogs")]
+	public partial class Catalogs : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _ActionType;
-		
-		private System.Nullable<int> _BookID;
-		
-		private EntityRef<Book> _Book;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnActionTypeChanging(string value);
-    partial void OnActionTypeChanged();
-    partial void OnBookIDChanging(System.Nullable<int> value);
-    partial void OnBookIDChanged();
-    #endregion
-		
-		public Action()
-		{
-			this._Book = default(EntityRef<Book>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionType", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string ActionType
-		{
-			get
-			{
-				return this._ActionType;
-			}
-			set
-			{
-				if ((this._ActionType != value))
-				{
-					this.OnActionTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ActionType = value;
-					this.SendPropertyChanged("ActionType");
-					this.OnActionTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookID", DbType="Int")]
-		public System.Nullable<int> BookID
-		{
-			get
-			{
-				return this._BookID;
-			}
-			set
-			{
-				if ((this._BookID != value))
-				{
-					if (this._Book.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBookIDChanging(value);
-					this.SendPropertyChanging();
-					this._BookID = value;
-					this.SendPropertyChanged("BookID");
-					this.OnBookIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_Action", Storage="_Book", ThisKey="BookID", OtherKey="BookID", IsForeignKey=true)]
-		public Book Book
-		{
-			get
-			{
-				return this._Book.Entity;
-			}
-			set
-			{
-				Book previousValue = this._Book.Entity;
-				if (((previousValue != value) 
-							|| (this._Book.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Book.Entity = null;
-						previousValue.Action.Remove(this);
-					}
-					this._Book.Entity = value;
-					if ((value != null))
-					{
-						value.Action.Add(this);
-						this._BookID = value.BookID;
-					}
-					else
-					{
-						this._BookID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Book");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Book")]
-	public partial class Book : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _BookID;
-		
-		private EntitySet<Action> _Action;
-		
-		private EntitySet<Catalog> _Catalog;
-		
-		private EntitySet<Reader> _Reader;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnBookIDChanging(int value);
-    partial void OnBookIDChanged();
-    #endregion
-		
-		public Book()
-		{
-			this._Action = new EntitySet<Action>(new Action<Action>(this.attach_Action), new Action<Action>(this.detach_Action));
-			this._Catalog = new EntitySet<Catalog>(new Action<Catalog>(this.attach_Catalog), new Action<Catalog>(this.detach_Catalog));
-			this._Reader = new EntitySet<Reader>(new Action<Reader>(this.attach_Reader), new Action<Reader>(this.detach_Reader));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int BookID
-		{
-			get
-			{
-				return this._BookID;
-			}
-			set
-			{
-				if ((this._BookID != value))
-				{
-					this.OnBookIDChanging(value);
-					this.SendPropertyChanging();
-					this._BookID = value;
-					this.SendPropertyChanged("BookID");
-					this.OnBookIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_Action", Storage="_Action", ThisKey="BookID", OtherKey="BookID")]
-		public EntitySet<Action> Action
-		{
-			get
-			{
-				return this._Action;
-			}
-			set
-			{
-				this._Action.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_Catalog", Storage="_Catalog", ThisKey="BookID", OtherKey="BookID")]
-		public EntitySet<Catalog> Catalog
-		{
-			get
-			{
-				return this._Catalog;
-			}
-			set
-			{
-				this._Catalog.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_Reader", Storage="_Reader", ThisKey="BookID", OtherKey="BookID")]
-		public EntitySet<Reader> Reader
-		{
-			get
-			{
-				return this._Reader;
-			}
-			set
-			{
-				this._Reader.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Action(Action entity)
-		{
-			this.SendPropertyChanging();
-			entity.Book = this;
-		}
-		
-		private void detach_Action(Action entity)
-		{
-			this.SendPropertyChanging();
-			entity.Book = null;
-		}
-		
-		private void attach_Catalog(Catalog entity)
-		{
-			this.SendPropertyChanging();
-			entity.Book = this;
-		}
-		
-		private void detach_Catalog(Catalog entity)
-		{
-			this.SendPropertyChanging();
-			entity.Book = null;
-		}
-		
-		private void attach_Reader(Reader entity)
-		{
-			this.SendPropertyChanging();
-			entity.Book = this;
-		}
-		
-		private void detach_Reader(Reader entity)
-		{
-			this.SendPropertyChanging();
-			entity.Book = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Catalog")]
-	public partial class Catalog : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _Title;
+		private int _CatalogID;
 		
 		private string _Author;
 		
-		private System.Nullable<int> _BookID;
+		private string _Title;
 		
-		private EntityRef<Book> _Book;
+		private EntitySet<Actions> _Actions;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
+    partial void OnCatalogIDChanging(int value);
+    partial void OnCatalogIDChanged();
     partial void OnAuthorChanging(string value);
     partial void OnAuthorChanged();
-    partial void OnBookIDChanging(System.Nullable<int> value);
-    partial void OnBookIDChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
     #endregion
 		
-		public Catalog()
+		public Catalogs()
 		{
-			this._Book = default(EntityRef<Book>);
+			this._Actions = new EntitySet<Actions>(new Action<Actions>(this.attach_Actions), new Action<Actions>(this.detach_Actions));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Title
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CatalogID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int CatalogID
 		{
 			get
 			{
-				return this._Title;
+				return this._CatalogID;
 			}
 			set
 			{
-				if ((this._Title != value))
+				if ((this._CatalogID != value))
 				{
-					this.OnTitleChanging(value);
+					this.OnCatalogIDChanging(value);
 					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
+					this._CatalogID = value;
+					this.SendPropertyChanged("CatalogID");
+					this.OnCatalogIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Author", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Author", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Author
 		{
 			get
@@ -446,61 +168,36 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookID", DbType="Int")]
-		public System.Nullable<int> BookID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Title
 		{
 			get
 			{
-				return this._BookID;
+				return this._Title;
 			}
 			set
 			{
-				if ((this._BookID != value))
+				if ((this._Title != value))
 				{
-					if (this._Book.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBookIDChanging(value);
+					this.OnTitleChanging(value);
 					this.SendPropertyChanging();
-					this._BookID = value;
-					this.SendPropertyChanged("BookID");
-					this.OnBookIDChanged();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_Catalog", Storage="_Book", ThisKey="BookID", OtherKey="BookID", IsForeignKey=true)]
-		public Book Book
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Catalogs_Actions", Storage="_Actions", ThisKey="CatalogID", OtherKey="CatalogID")]
+		public EntitySet<Actions> Actions
 		{
 			get
 			{
-				return this._Book.Entity;
+				return this._Actions;
 			}
 			set
 			{
-				Book previousValue = this._Book.Entity;
-				if (((previousValue != value) 
-							|| (this._Book.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Book.Entity = null;
-						previousValue.Catalog.Remove(this);
-					}
-					this._Book.Entity = value;
-					if ((value != null))
-					{
-						value.Catalog.Add(this);
-						this._BookID = value.BookID;
-					}
-					else
-					{
-						this._BookID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Book");
-				}
+				this._Actions.Assign(value);
 			}
 		}
 		
@@ -523,10 +220,22 @@ namespace Data
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_Actions(Actions entity)
+		{
+			this.SendPropertyChanging();
+			entity.Catalogs = this;
+		}
+		
+		private void detach_Actions(Actions entity)
+		{
+			this.SendPropertyChanging();
+			entity.Catalogs = null;
+		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reader")]
-	public partial class Reader : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Readers")]
+	public partial class Readers : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -537,9 +246,7 @@ namespace Data
 		
 		private string _Surname;
 		
-		private System.Nullable<int> _BookID;
-		
-		private EntityRef<Book> _Book;
+		private EntitySet<Actions> _Actions;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -551,13 +258,11 @@ namespace Data
     partial void OnNameChanged();
     partial void OnSurnameChanging(string value);
     partial void OnSurnameChanged();
-    partial void OnBookIDChanging(System.Nullable<int> value);
-    partial void OnBookIDChanged();
     #endregion
 		
-		public Reader()
+		public Readers()
 		{
-			this._Book = default(EntityRef<Book>);
+			this._Actions = new EntitySet<Actions>(new Action<Actions>(this.attach_Actions), new Action<Actions>(this.detach_Actions));
 			OnCreated();
 		}
 		
@@ -621,60 +326,243 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookID", DbType="Int")]
-		public System.Nullable<int> BookID
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Readers_Actions", Storage="_Actions", ThisKey="ReaderID", OtherKey="ReaderID")]
+		public EntitySet<Actions> Actions
 		{
 			get
 			{
-				return this._BookID;
+				return this._Actions;
 			}
 			set
 			{
-				if ((this._BookID != value))
+				this._Actions.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Actions(Actions entity)
+		{
+			this.SendPropertyChanging();
+			entity.Readers = this;
+		}
+		
+		private void detach_Actions(Actions entity)
+		{
+			this.SendPropertyChanging();
+			entity.Readers = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Actions")]
+	public partial class Actions : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ActionID;
+		
+		private string _ActionType;
+		
+		private System.Nullable<int> _CatalogID;
+		
+		private System.Nullable<int> _ReaderID;
+		
+		private EntityRef<Catalogs> _Catalogs;
+		
+		private EntityRef<Readers> _Readers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnActionIDChanging(int value);
+    partial void OnActionIDChanged();
+    partial void OnActionTypeChanging(string value);
+    partial void OnActionTypeChanged();
+    partial void OnCatalogIDChanging(System.Nullable<int> value);
+    partial void OnCatalogIDChanged();
+    partial void OnReaderIDChanging(System.Nullable<int> value);
+    partial void OnReaderIDChanged();
+    #endregion
+		
+		public Actions()
+		{
+			this._Catalogs = default(EntityRef<Catalogs>);
+			this._Readers = default(EntityRef<Readers>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ActionID
+		{
+			get
+			{
+				return this._ActionID;
+			}
+			set
+			{
+				if ((this._ActionID != value))
 				{
-					if (this._Book.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBookIDChanging(value);
+					this.OnActionIDChanging(value);
 					this.SendPropertyChanging();
-					this._BookID = value;
-					this.SendPropertyChanged("BookID");
-					this.OnBookIDChanged();
+					this._ActionID = value;
+					this.SendPropertyChanged("ActionID");
+					this.OnActionIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_Reader", Storage="_Book", ThisKey="BookID", OtherKey="BookID", IsForeignKey=true)]
-		public Book Book
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionType", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string ActionType
 		{
 			get
 			{
-				return this._Book.Entity;
+				return this._ActionType;
 			}
 			set
 			{
-				Book previousValue = this._Book.Entity;
+				if ((this._ActionType != value))
+				{
+					this.OnActionTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ActionType = value;
+					this.SendPropertyChanged("ActionType");
+					this.OnActionTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CatalogID", DbType="Int")]
+		public System.Nullable<int> CatalogID
+		{
+			get
+			{
+				return this._CatalogID;
+			}
+			set
+			{
+				if ((this._CatalogID != value))
+				{
+					if (this._Catalogs.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCatalogIDChanging(value);
+					this.SendPropertyChanging();
+					this._CatalogID = value;
+					this.SendPropertyChanged("CatalogID");
+					this.OnCatalogIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReaderID", DbType="Int")]
+		public System.Nullable<int> ReaderID
+		{
+			get
+			{
+				return this._ReaderID;
+			}
+			set
+			{
+				if ((this._ReaderID != value))
+				{
+					if (this._Readers.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnReaderIDChanging(value);
+					this.SendPropertyChanging();
+					this._ReaderID = value;
+					this.SendPropertyChanged("ReaderID");
+					this.OnReaderIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Catalogs_Actions", Storage="_Catalogs", ThisKey="CatalogID", OtherKey="CatalogID", IsForeignKey=true)]
+		public Catalogs Catalogs
+		{
+			get
+			{
+				return this._Catalogs.Entity;
+			}
+			set
+			{
+				Catalogs previousValue = this._Catalogs.Entity;
 				if (((previousValue != value) 
-							|| (this._Book.HasLoadedOrAssignedValue == false)))
+							|| (this._Catalogs.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Book.Entity = null;
-						previousValue.Reader.Remove(this);
+						this._Catalogs.Entity = null;
+						previousValue.Actions.Remove(this);
 					}
-					this._Book.Entity = value;
+					this._Catalogs.Entity = value;
 					if ((value != null))
 					{
-						value.Reader.Add(this);
-						this._BookID = value.BookID;
+						value.Actions.Add(this);
+						this._CatalogID = value.CatalogID;
 					}
 					else
 					{
-						this._BookID = default(Nullable<int>);
+						this._CatalogID = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("Book");
+					this.SendPropertyChanged("Catalogs");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Readers_Actions", Storage="_Readers", ThisKey="ReaderID", OtherKey="ReaderID", IsForeignKey=true)]
+		public Readers Readers
+		{
+			get
+			{
+				return this._Readers.Entity;
+			}
+			set
+			{
+				Readers previousValue = this._Readers.Entity;
+				if (((previousValue != value) 
+							|| (this._Readers.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Readers.Entity = null;
+						previousValue.Actions.Remove(this);
+					}
+					this._Readers.Entity = value;
+					if ((value != null))
+					{
+						value.Actions.Add(this);
+						this._ReaderID = value.ReaderID;
+					}
+					else
+					{
+						this._ReaderID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Readers");
 				}
 			}
 		}

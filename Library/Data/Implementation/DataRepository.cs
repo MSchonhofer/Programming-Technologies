@@ -4,222 +4,208 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data.API;
+using System.Data.Linq;
 
 namespace Data.Impl
 {
     internal class DataRepository : IDataRepository
     {
-        internal class DataContext : IDataContext
-        {
-            public int ValidBookID { get; set; }
-            public List<IReader> Readers { get; set; }
-            public List<ICatalog> Catalogs { get; set; }
-            public List<IAction> Actions { get; set; }
-
-            public DataContext()
-            {
-                Readers = new List<IReader>();
-                Catalogs = new List<ICatalog>();
-                Actions = new List<IAction>();
-                ValidBookID = 0;
-            }
-        }
-
-        private DataContext data { get; set; }
+        private LINQToSQLDataContext context;
+        private string connectionString = "Data Source=DESKTOP-QMAHFOC, Initial Catalog = Library, Integrated Security = True";
         private IFill filler;
 
         public DataRepository(IFill filler)
         {
-            data = new DataContext();
+            context = new LINQToSQLDataContext(connectionString);
             this.filler = filler;
             this.filler.Fill(this);
         }
-
-        #region Catalog
-
-        public override void AddCatalog(ICatalog catalog)
+        public override ICatalog Transform(Catalogs catalog)
         {
-            data.Catalogs.Add(catalog);
+            return new Catalog(catalog.CatalogID, catalog.Author, catalog.Title);
+        }
+        public override IReader Transform(Readers reader)
+        {
+            return new Reader(reader.ReaderID, reader.Name, reader.Surname);
         }
 
-        public override void SetCatalogs(List<ICatalog> catalog)
+        public override IAction Transform(Actions action)
         {
-            data.Catalogs = catalog;
+            return new Action(action.ActionID, action.CatalogID, action.ReaderID);
         }
 
-        public override ICatalog GetCatalog(string author, string title)
+        public override void AddCatalog(int id, string author, string title)
         {
-            foreach (ICatalog catalog in data.Catalogs)
+            if (GetCatalogByTitle(title) == null && !title.Equals(null) && !author.Equals(null) && !id.Equals(null) && GetCatalogByID(id) == null)
             {
-                if (catalog.Author.Equals(author) && catalog.Title.Equals(title))
+                Catalogs newCatalog = new Catalogs
                 {
-                    return catalog;
-                }
-
+                    CatalogID = id,
+                    Author = author,
+                    Title = title,
+                };
+                context.Catalogs.InsertOnSubmit(newCatalog);
+                context.SubmitChanges();
             }
+        }
 
+        public override ICatalog GetCatalogByTitle(string title)
+        {
+            var catalogDb = (from catalog in context.Catalogs where catalog.Title == title select catalog).FirstOrDefault();
+            if (catalogDb != null)
+            {
+                return Transform(catalogDb);
+            }
             return null;
         }
 
-        public override ICatalog GetCatalog(int index)
+        public override IEnumerable<ICatalog> GetCatalogByAuthor(string author)
         {
-            if (index >= 0 && index < data.Catalogs.Count)
+            var catalogDb = (from catalog in context.Catalogs where (catalog.Author == author) select catalog).FirstOrDefault();
+            List<ICatalog> listOfCatalogs = new List<ICatalog>();
+            if (catalogDb != null)
             {
-                return data.Catalogs[index];
+                listOfCatalogs.Add(Transform(catalogDb));
+                return listOfCatalogs;
             }
+            return null;
+        }
 
+        public override ICatalog GetCatalogByID(int id)
+        {
+            var catalogDb = (from catalog in context.Catalogs where catalog.CatalogID == id select catalog).FirstOrDefault();
+            if (catalogDb != null)
+            {
+                return Transform(catalogDb);
+            }
             return null;
         }
 
         public override IEnumerable<ICatalog> GetAllCatalogs()
         {
-            return data.Catalogs;
+            var catalogsDb = from catalogDB in context.Catalogs select catalogDB;
+            List<ICatalog> catalogs = new List<ICatalog>();
+            foreach (Catalogs catalog in catalogsDb)
+            {
+                catalogs.Add(Transform(catalog));
+            }
+            return catalogs;
         }
 
-        public override void UpdateCatalog(int index, ICatalog catalog)
+        public override void UpdateCatalog(int id, string author, string name)
         {
-            if (index >= 0 && index <= data.Catalogs.Count)
+            Catalogs catalog = context.Catalogs.Where(i => i.CatalogID == id).SingleOrDefault();
+            if (!id.Equals(null) && !author.Equals(null) && !name.Equals(null) && GetCatalogByID(id) != null)
             {
-                data.Catalogs[index] = catalog;
+                catalog.CatalogID = id;
+                catalog.Author = author;
+                catalog.Title = name;
+                context.SubmitChanges();
             }
         }
 
-        public override void UpdateCatalog(string author, string title, ICatalog catalog)
+        public override void DeleteCatalog(int id)
         {
-            for (int i = 0; i < data.Catalogs.Count; i++)
+            Catalogs catalog = context.Catalogs.Where(i => i.CatalogID != id).SingleOrDefault();
+            if (GetCatalogByID(id) != null && !id.Equals(null))
             {
-                if (data.Catalogs[i].Author.Equals(author) && data.Catalogs[i].Title.Equals(title))
+                context.Catalogs.DeleteOnSubmit(catalog);
+                context.SubmitChanges();
+            }
+        }
+
+        public override void AddReader(int id, string name, string surname)
+        {
+            if (GetReader(id) == null && !id.Equals(null) && !name.Equals(null) && !surname.Equals(null))
+            {
+                Readers newReader = new Readers
                 {
-                    data.Catalogs[i] = catalog;
-                    break;
-                }
+                    ReaderID = id,
+                    Name = name,
+                    Surname = surname
+                };
+                context.Readers.InsertOnSubmit(newReader);
+                context.SubmitChanges();
             }
         }
 
-        public override void DeleteCatalog(int index)
+        public override IReader GetReader(int id)
         {
-            if (index >= 0 && index < data.Catalogs.Count)
+            var readerDb = (from reader in context.Readers where reader.ReaderID == id select reader).FirstOrDefault();
+            if (readerDb != null)
             {
-                data.Catalogs.RemoveAt(index);
+                return Transform(readerDb);
             }
-        }
-
-        public override void DeleteCatalog(string author, string title)
-        {
-            ICatalog catalog = GetCatalog(author, title);
-            if (catalog != null)
-            {
-                data.Catalogs.Remove(catalog);
-            }
-        }
-
-        #endregion
-
-        #region Reader
-
-        public override void AddReader(IReader r)
-        {
-            data.Readers.Add(r);
-        }
-
-        public override void SetReaders(List<IReader> r)
-        {
-            data.Readers = r;
-        }
-
-        public override IReader GetReader(int readerID)
-        {
-            foreach (IReader r in data.Readers)
-            {
-                if (r.ReaderID == readerID)
-                {
-                    return r;
-                }
-
-            }
-
             return null;
         }
 
-        public override void UpdateReader(int readerID, IReader reader)
+        public override void UpdateReader(int id, string name, string surname)
         {
-            for (int i = 0; i < data.Readers.Count; i++)
+            Readers reader = context.Readers.Where(i => i.ReaderID == id).SingleOrDefault();
+            if (!id.Equals(null) && !name.Equals(null) && !surname.Equals(null) && GetReader(id) != null)
             {
-                if (data.Readers[i].ReaderID == readerID)
-                {
-                    data.Readers[i] = reader;
-                    break;
-                }
+                reader.ReaderID = id;
+                reader.Name = name;
+                reader.Surname = surname;
             }
         }
 
-        public override void DeleteReader(int readerID)
+        public override void DeleteReader(int id)
         {
-            IReader reader = GetReader(readerID);
-            if (reader != null)
+            Readers reader = context.Readers.Where(i => i.ReaderID != id).SingleOrDefault();
+            if (GetReader(id) != null && !id.Equals(null))
             {
-                data.Readers.Remove(reader);
+                context.Readers.DeleteOnSubmit(reader);
+                context.SubmitChanges();
             }
         }
 
         public override IEnumerable<IReader> GetAllReaders()
         {
-            return data.Readers;
+            var readersDb = from readerDB in context.Readers select readerDB;
+            List<IReader> readers = new List<IReader>();
+            foreach (Readers reader in readersDb)
+            {
+                readers.Add(Transform(reader));
+            }
+            return readers;
         }
 
-        #endregion
-
-        #region Book
-
-        public override IBook GetBook(ICatalog catalog)
+        public override void AddAction(int id, int cID, int rID)
         {
-            if (catalog.Books.Count != 0)
+            if (GetAction(id) == null && !id.Equals(null) && !cID.Equals(null) && !rID.Equals(null))
             {
-                IBook book = catalog.Books[catalog.Books.Count - 1];
-                return book;
+                Actions newAction = new Actions
+                {
+                    ActionID = id,
+                    CatalogID = cID,
+                    ReaderID = rID,
+                };
+                context.Actions.InsertOnSubmit(newAction);
+                context.SubmitChanges();
+            }
+        }
+
+        public override IAction GetAction(int id)
+        {
+            var actionDb = (from action in context.Actions where action.ActionID == id select action).FirstOrDefault();
+            if (actionDb != null)
+            {
+                return Transform(actionDb);
             }
             return null;
         }
-
-        public override void AddBook(IBook book)
-        {
-            if (book.Catalog != null)
-            {
-                book.Catalog.Books.Add(book);
-                data.ValidBookID++;
-            }
-        }
-
-        /* public override int ValidBookID //current valid book ID?
-         {
-             get { return data.ValidBookID; }
-         }
-         
-        */
-        #endregion
-
-        #region Actions
-
-        public override void AddAction(IAction action)
-        {
-            data.Actions.Add(action);
-        }
-
-        public override IAction GetAction(int index)
-        {
-            if (index >= 0 && index < data.Actions.Count)
-            {
-                return data.Actions[index];
-            }
-            return null;
-        }
-
 
         public override IEnumerable<IAction> GetAllActions()
         {
-            return data.Actions;
+            var actionsDb = from actionDB in context.Actions select actionDB;
+            List<IAction> actions = new List<IAction>();
+            foreach (Actions action in actionsDb)
+            {
+                actions.Add(Transform(action));
+            }
+            return actions;
         }
-        #endregion
-
     }
 }
+  

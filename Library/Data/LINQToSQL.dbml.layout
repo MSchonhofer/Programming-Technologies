@@ -2,49 +2,36 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LINQToSQL">
   <DataContextMoniker Name="/LINQToSQLDataContext" />
   <nestedChildShapes>
-    <classShape Id="b4006c98-91a5-48bf-b5eb-502e8d16bf12" absoluteBounds="0.75, 2.125, 2, 1.1939925130208333">
-      <DataClassMoniker Name="/LINQToSQLDataContext/Action" />
+    <classShape Id="67c6e5ba-057f-4443-8dbd-e41c9e9f09fa" absoluteBounds="0.875, 3.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/LINQToSQLDataContext/Catalogs" />
       <nestedChildShapes>
-        <elementListCompartment Id="64c0d51a-befa-4fdf-8baa-456f1b6cc306" absoluteBounds="0.76500000000000012, 2.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="06753d81-236f-46c7-928e-d081eaeb46e1" absoluteBounds="0.88999999999999968, 3.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="38e66733-4450-45f6-9f47-1fe8d62f56ed" absoluteBounds="3.25, 0.5, 2, 1.0016910807291668">
-      <DataClassMoniker Name="/LINQToSQLDataContext/Book" />
+    <classShape Id="6fede53d-c6a2-4284-80bb-57410e1e1f81" absoluteBounds="7, 3.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/LINQToSQLDataContext/Readers" />
       <nestedChildShapes>
-        <elementListCompartment Id="cee161f1-2a0b-43ee-b04b-254e029667b6" absoluteBounds="3.2649999999999997, 0.96, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="178174e1-d5d9-45f2-8e62-6b758660b481" absoluteBounds="7.015, 3.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="c69728dc-70cd-49c4-8532-8875c6dd74ae" absoluteBounds="5.625, 2.125, 2, 1.3862939453125">
-      <DataClassMoniker Name="/LINQToSQLDataContext/Catalog" />
+    <classShape Id="ebdd7595-04f5-44df-ab37-1c4e32267e5d" absoluteBounds="4.125, 0.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/LINQToSQLDataContext/Actions" />
       <nestedChildShapes>
-        <elementListCompartment Id="c260554e-c834-4f05-9a17-f3e3282d5f3e" absoluteBounds="5.64, 2.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7c2faede-859c-484a-a60c-96891778c3a6" absoluteBounds="4.1400000000000006, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="d2f7e655-ed91-4bb2-90b2-181231f73567" absoluteBounds="3.25, 2.125, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/LINQToSQLDataContext/Reader" />
-      <nestedChildShapes>
-        <elementListCompartment Id="9e9308de-0d90-49f6-b65f-d0ff0a45c8d4" absoluteBounds="3.265, 2.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(3.25 : 1.50169108072917); (2.75 : 2.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/LINQToSQLDataContext/Book/Book_Action" />
+    <associationConnector edgePoints="[(1.875 : 3.25); (1.875 : 1.28929768880208); (4.125 : 1.28929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LINQToSQLDataContext/Catalogs/Catalogs_Actions" />
       <nodes>
-        <classShapeMoniker Id="38e66733-4450-45f6-9f47-1fe8d62f56ed" />
-        <classShapeMoniker Id="b4006c98-91a5-48bf-b5eb-502e8d16bf12" />
+        <classShapeMoniker Id="67c6e5ba-057f-4443-8dbd-e41c9e9f09fa" />
+        <classShapeMoniker Id="ebdd7595-04f5-44df-ab37-1c4e32267e5d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.25 : 1.50169108072917); (5.625 : 2.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/LINQToSQLDataContext/Book/Book_Catalog" />
+    <associationConnector edgePoints="[(8 : 3.25); (8 : 1.28929768880208); (6.125 : 1.28929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LINQToSQLDataContext/Readers/Readers_Actions" />
       <nodes>
-        <classShapeMoniker Id="38e66733-4450-45f6-9f47-1fe8d62f56ed" />
-        <classShapeMoniker Id="c69728dc-70cd-49c4-8532-8875c6dd74ae" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(4.25 : 1.50169108072917); (4.25 : 2.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/LINQToSQLDataContext/Book/Book_Reader" />
-      <nodes>
-        <classShapeMoniker Id="38e66733-4450-45f6-9f47-1fe8d62f56ed" />
-        <classShapeMoniker Id="d2f7e655-ed91-4bb2-90b2-181231f73567" />
+        <classShapeMoniker Id="6fede53d-c6a2-4284-80bb-57410e1e1f81" />
+        <classShapeMoniker Id="ebdd7595-04f5-44df-ab37-1c4e32267e5d" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

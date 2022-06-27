@@ -11,7 +11,6 @@ namespace Data.API
         string Name { get; set; }
         string Surname { get; set; }
         int ReaderID { get; set; }
-        List<IBook> Books { get; set; }
 
     }
 }

@@ -7,19 +7,17 @@ using Data.API;
 
 namespace Data.Impl
 {
-    [Serializable]
-
     internal class Catalog : ICatalog
     {
+        public int CatalogID { get; set; }
         public String Author { get; set; }
         public String Title { get; set; }
-        public List<IBook> Books { get; set; }
 
-        public Catalog(string author, string title)
+        public Catalog(int id, string author, string title)
         {
+            CatalogID = id;
             Author = author;
             Title = title;
-            Books = new List<IBook>();
         }
     }
 }
