@@ -20,106 +20,79 @@ namespace Service.Implementation
             this.DataRepository = dataRepository;
         }
 
-        public override void AddCatalog(ICatalog catalog)
+        public override void AddAction(int id, int cID, int rID)
         {
-            DataRepository.AddCatalog(catalog);
+            throw new NotImplementedException();
         }
 
-        public override void AddReader(Data.API.IReader reader)
+        public override void AddCatalog(int id, string author, string title)
         {
-            DataRepository.AddReader(reader);
+            throw new NotImplementedException();
         }
 
-        public override void DeleteCatalog(int index)
+        public override void AddReader(int id, string name, string surname)
         {
-            DataRepository.DeleteCatalog(index);
+            throw new NotImplementedException();
         }
 
-        public override void DeleteCatalog(string author, string title)
+        public override void DeleteCatalog(int id)
         {
-            DataRepository.DeleteCatalog(author, title);
+            throw new NotImplementedException();
         }
 
         public override void DeleteReader(int id)
         {
-            DataRepository.DeleteReader(id);
+            throw new NotImplementedException();
+        }
+
+        public override IAction GetAction(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IEnumerable<IAction> GetAllActions()
+        {
+            throw new NotImplementedException();
         }
 
         public override IEnumerable<API.ICatalog> GetAllCatalogs()
         {
-            var catalogs = DataRepository.GetAllCatalogs();
-            var catalogList = new List<API.ICatalog>();
-
-            foreach (var catalog in catalogs)
-            {
-                Catalog catalog1 = new Catalog(catalog.Author, catalog.Title);
-                catalogList.Add((API.ICatalog)catalog1);
-            }
-            return catalogList;
+            throw new NotImplementedException();
         }
 
         public override IEnumerable<API.IReader> GetAllReaders()
         {
-            var readers = DataRepository.GetAllReaders();
-            var readersList = new List<API.IReader>();
-
-            foreach (var reader in readers)
-            {
-                Reader reader1 = new Reader(reader.ReaderID, reader.Name, reader.Surname);
-                readersList.Add((API.IReader)reader1);
-            }
-
-            return readersList;
+            throw new NotImplementedException();
         }
 
-        public override Data.API.ICatalog GetCatalog(string author, string title)
+        public override IEnumerable<API.ICatalog> GetCatalogByAuthor(string author)
         {
-            return (Data.API.ICatalog)DataRepository.GetCatalog(author, title);
+            throw new NotImplementedException();
         }
 
-        public override Data.API.ICatalog GetCatalog(int index)
+        public override API.ICatalog GetCatalogByID(int id)
         {
-            return (Data.API.ICatalog)DataRepository.GetCatalog(index);
+            throw new NotImplementedException();
         }
 
-        public override Data.API.IReader GetReader(int id)
+        public override API.ICatalog GetCatalogByTitle(string title)
         {
-            return (Data.API.IReader)DataRepository.GetReader(id);
-        }
-        public override IBook RentBook(string author, string title, Data.API.IReader reader)
-        {
-            ICatalog catalog = DataRepository.GetCatalog(author, title);
-            IBook book = DataRepository.GetBook(catalog);
-            if (book != null)
-            {
-                catalog.Books.Remove(book);
-                reader.Books.Add(book);
-            }
-            return book;
-        }
-        public override void ReturnBook(IBook book, Data.API.IReader reader)
-        {
-            if (reader.Books.Contains(book))
-            {
-                reader.Books.Remove(book);
-                book.Catalog.Books.Add(book);
-            }
+            throw new NotImplementedException();
         }
 
-        public override void UpdateCatalog(int index, ICatalog catalog)
+        public override API.IReader GetReader(int id)
         {
-            DataRepository.UpdateCatalog(index, catalog);
+            throw new NotImplementedException();
         }
 
-        public override void UpdateCatalog(string author, string title, ICatalog catalog)
+        public override void UpdateCatalog(int id, string author, string name)
         {
-            DataRepository.UpdateCatalog(author, title, catalog);
+            throw new NotImplementedException();
         }
 
-        public override void UpdateReader(int id, IReader reader)
+        public override void UpdateReader(int id, string name, string surname)
         {
-            DataRepository.UpdateReader(id, reader);
+            throw new NotImplementedException();
         }
-        
     }
 }
