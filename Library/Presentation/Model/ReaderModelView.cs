@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Data.API;
+using Presentation.API;
 
-namespace Presentation.Model.Implementation
+namespace Presentation.Model
 {
-    public class ReaderModelView : IReaderModelView
+    internal class ReaderModelView : IReaderModelView
     {
         public string Name { get; set; }
         public string Surname { get; set; }
         public int ReaderID { get; set; }
-        public List<IBook> Books { get; set; }
-        public ReaderModelView(string name, string surname, int id)
+        public ReaderModelView(int id, string name, string surname)
         {
+            ReaderID = id;
             Name = name;
             Surname = surname;
-            ReaderID = id;
-            Books = new List<IBook>();
         }
     }
 }
