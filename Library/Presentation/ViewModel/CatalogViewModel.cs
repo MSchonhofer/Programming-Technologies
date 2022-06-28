@@ -1,45 +1,32 @@
-﻿using Presentation.ViewModel.MVVM;
-using Service.API;
+﻿using Presentation.API;
+using Presentation.ViewModel.MVVM;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Service.API;
 
 namespace Presentation.ViewModel
 {
     public class CatalogViewModel : ViewModelBase
     {
-        private IService service;
-        public CatalogViewModel(IService service)
+        private IModel model;
+        public CatalogViewModel(IModel model)
         {
-            this.service = service;
+            this.model = model;
             AddCatalogCommand = new RelayCommand(AddCatalog);
-            UpdateCatalogByTitleCommand = new RelayCommand(UpdateCatalogByTitle);
-            UpdateCatalogByIndexCommand = new RelayCommand(UpdateCatalogByIndex);
-            DeleteCatalogByIndexCommand = new RelayCommand(DeleteCatalogByIndex);
-            DeleteCatalogByTitleCommand = new RelayCommand(DeleteCatalogByTitle);
+            UpdateCatalogCommand = new RelayCommand(UpdateCatalog);
+            DeleteCatalogCommand = new RelayCommand(DeleteCatalog);
+            RefreshCatalogCommand = new RelayCommand(RefreshCatalog);
+
         }
-        public RelayCommand AddCatalogCommand { get; private set; }
-        public RelayCommand DeleteCatalogByIndexCommand { get; private set; }
-        public RelayCommand DeleteCatalogByTitleCommand { get; private set; }
-        public RelayCommand UpdateCatalogByIndexCommand { get; private set; }
-        public RelayCommand UpdateCatalogByTitleCommand { get; private set; }
-
-        private string text;
-        public string Text
-        {
-            get { return text; }
-            set { text = value; OnPropertyChanged("Text"); }
-        }
-
-        public Action<string> MessageBox { get; set; } = x => throw new ArgumentOutOfRangeException($"The delegate {nameof(MessageBox)} must be assigned by the view layer");
-
-
         private string author;
         public string Author
         {
-            get { return author; }
+            get
+            {
+                return author;
+            }
             set
             {
                 author = value;
@@ -49,59 +36,80 @@ namespace Presentation.ViewModel
         private string title;
         public string Title
         {
-            get { return title; }
-            set { title = value; OnPropertyChanged("Title"); }
+            get
+            {
+                return title;
+            }
+            set
+            {
+                title = value;
+                OnPropertyChanged("Title");
+            }
         }
-
-        private int index;
-        public int Index { get { return index; } set { index = value; OnPropertyChanged("Index"); } }
-
-        private Data.API.ICatalog catalog;
-        public Data.API.ICatalog Catalog
+        private int id;
+        public int ID
         {
-            get { return catalog; }
-            set { catalog = value; OnPropertyChanged("Catalog"); }
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                OnPropertyChanged("ID");
+            }
         }
+
+        private string text;
+        public string Text
+        {
+            get
+            {
+                return text;
+            }
+            set { text = value; OnPropertyChanged("Text");}
+        }
+
+        public RelayCommand AddCatalogCommand { get; private set; }
+        public RelayCommand UpdateCatalogCommand { get; private set; }
+        public RelayCommand DeleteCatalogCommand { get; private set; }
+        public RelayCommand RefreshCatalogCommand { get; private set; }
         private void AddCatalog()
         {
-            service.AddCatalog(catalog);
-            text = "New catalog added.";
-            MessageBox(text);
+            model.service.AddCatalog(ID, Author, Title);
+            text = "Book added.";
+            MessageShowBoxDelegate(Text);
         }
-        private void UpdateCatalogByIndex()
+        private void UpdateCatalog()
         {
-            service.UpdateCatalog(index, catalog);
-            text = "Catalog updated";
-            MessageBox(text);
+            model.service.UpdateCatalog(ID, Author, Title);
+            text = "Catalog updated.";
+            MessageShowBoxDelegate(Text);
         }
-        private void UpdateCatalogByTitle()
+        private void DeleteCatalog()
         {
-            service.UpdateCatalog(author, title, catalog);
-            text = "Catalog updated";
-            MessageBox(text);
+            model.service.DeleteCatalog(ID);
+            text = "Book deleted.";
+            MessageShowBoxDelegate(Text);
         }
-        private void DeleteCatalogByIndex()
+        private void RefreshCatalog()
         {
-            service.DeleteCatalog(index);
-            text = "Catalog deleted";
-            MessageBox(text);
+            Catalogs = model.service.GetAllCatalogs();
         }
-        private void DeleteCatalogByTitle()
-        {
-            service.DeleteCatalog(author, title);
-            text = "Catalog deleted.";
-            MessageBox(text);
-        }
-        private void RefreshCatalogs()
-        {
-            Catalogs = service.GetAllCatalogs();
-        }
-
         private IEnumerable<ICatalog> catalogs;
         public IEnumerable<ICatalog> Catalogs
         {
-            get { return catalogs; }
-            set { catalogs = value; OnPropertyChanged("Catalogs"); }
+            get
+            {
+                return catalogs;
+            }
+            set
+            {
+                catalogs = value;
+                OnPropertyChanged("Catalogs");
+            }
         }
+
+        public System.Action<string> MessageShowBoxDelegate { get; set; } = x => throw new ArgumentOutOfRangeException($"The delegate {nameof(MessageShowBoxDelegate)} must be assigned by view layer.");
     }
 }
