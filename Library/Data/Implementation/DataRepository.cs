@@ -11,7 +11,7 @@ namespace Data.Impl
     internal class DataRepository : IDataRepository
     {
         private LINQToSQLDataContext context;
-        private string connectionString = "Data Source=DESKTOP-QMAHFOC;Initial Catalog=library;Integrated Security=True";
+        private string connectionString = "Data Source=.;Initial Catalog=library;Integrated Security=True";
 
         internal DataRepository()
         {

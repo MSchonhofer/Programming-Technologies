@@ -12,10 +12,15 @@ namespace TestData
     [TestClass]
     public class DataTest
     {
+        private IDataRepository dataRepository;
+        public DataTest()
+        {
+            dataRepository = DataRepositoryFactory.CreateDataRepository();
+        }
         [TestMethod]
         public void TestConnection()
         {
-            IDataRepository dataRepository = DataRepositoryFactory.CreateDataRepository();
+            //IDataRepository dataRepository = DataRepositoryFactory.CreateDataRepository();
             int id = 1;
             dataRepository.AddCatalog(id, "Tolkien", "Lord of Rings");
             IEnumerable<ICatalog> dbCatalog = dataRepository.GetAllCatalogs().Where(c => c.CatalogID == id);
@@ -37,7 +42,7 @@ namespace TestData
         [TestMethod]
         public void TestRemoving()
         {
-            IDataRepository dataRepository = DataRepositoryFactory.CreateDataRepository();
+           // IDataRepository dataRepository = DataRepositoryFactory.CreateDataRepository();
             int id = 1;
             dataRepository.AddCatalog(id, "Tolkien", "Lord of Rings");
             IEnumerable<ICatalog> catalogs = dataRepository.GetAllCatalogs().ToList();
@@ -55,7 +60,7 @@ namespace TestData
         [TestMethod]
         public void TestUpdating()
         {
-            IDataRepository dataRepository = DataRepositoryFactory.CreateDataRepository();
+            //IDataRepository dataRepository = DataRepositoryFactory.CreateDataRepository();
             int id = 1;
             dataRepository.AddCatalog(id, "Tolkien", "Lord of Rings");
             IEnumerable<ICatalog> dbCatalog = dataRepository.GetAllCatalogs().Where(c => c.CatalogID == id);
