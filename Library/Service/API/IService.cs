@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Data.API;
 using Service.Implementation;
+using static Data.API.IDataRepository;
 
 namespace Service.API
 {
@@ -32,7 +33,7 @@ namespace Service.API
 
         public static IService CreateService(IDataRepository? dataRepository = default)
         {
-            return new LibraryService(dataRepository ?? IDataRepository.CreateDataRepository());
+            return new LibraryService(dataRepository ?? DataRepositoryFactory.CreateDataRepository());
         }
     }
 }

@@ -34,9 +34,12 @@ namespace Data.API
         public abstract IAction GetAction(int id);
         public abstract IEnumerable<IAction> GetAllActions();
 
-        public static IDataRepository CreateDataRepository(IFill fill = default)
+        public abstract class DataRepositoryFactory
         {
-            return new DataRepository(fill);
+            public static IDataRepository CreateDataRepository()
+            {
+                return new DataRepository();
+            }
         }
     }
 }

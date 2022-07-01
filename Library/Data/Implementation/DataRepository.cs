@@ -11,14 +11,11 @@ namespace Data.Impl
     internal class DataRepository : IDataRepository
     {
         private LINQToSQLDataContext context;
-        private string connectionString = "Data Source=DESKTOP-QMAHFOC, Initial Catalog = Library, Integrated Security = True";
-        private IFill filler;
+        private string connectionString = "Data Source=DESKTOP-QMAHFOC;Initial Catalog=library;Integrated Security=True";
 
-        public DataRepository(IFill filler)
+        internal DataRepository()
         {
             context = new LINQToSQLDataContext(connectionString);
-            this.filler = filler;
-            this.filler.Fill(this);
         }
         public override ICatalog Transform(Catalogs catalog)
         {
