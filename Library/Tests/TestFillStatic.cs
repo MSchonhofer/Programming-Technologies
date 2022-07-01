@@ -7,59 +7,78 @@ using Data.API;
 
 namespace Tests
 {
-
-    internal class Book : IBook
-    {
-        public ICatalog Catalog { get; set; }
-        public int BookID { get; set; }
-        public Book(ICatalog catalog, int id)
-        {
-            Catalog = catalog;
-            BookID = id;
-        }
-    }
     public class TestFillStatic : IFill
     {
         public override void Fill(IDataRepository dataRepository)
         {
-            ICatalog c1 = new Catalog("Dostoevsky", "Crime and Punishment");
-            c1.Books.Add(new Book(c1, 1));
-            c1.Books.Add(new Book(c1, 2));
-            c1.Books.Add(new Book(c1, 3));
-            c1.Books.Add(new Book(c1, 4));
-            dataRepository.AddCatalog(c1);
+            ICatalog c1 = new Catalog(1, "Dostoevsky", "Crime and Punishment");
+            dataRepository.AddCatalog(1, "Dostoevsky", "Crime and Punishment");
 
-            ICatalog c2 = new Catalog("Conrad", "Heart of Darkness");
-            c2.Books.Add(new Book(c2, 5));
-            c2.Books.Add(new Book(c2, 6));
-            c2.Books.Add(new Book(c2, 7));
-            dataRepository.AddCatalog(c2);
+            ICatalog c2 = new Catalog(2, "Conrad", "Heart of Darkness");
+            dataRepository.AddCatalog(2, "Conrad", "Heart of Darkness");
 
-            ICatalog c3 = new Catalog("Tolkien", "Lord of Rings");
-            c3.Books.Add(new Book(c3, 8));
-            c3.Books.Add(new Book(c3, 9));
-            c3.Books.Add(new Book(c3, 10));
-            c3.Books.Add(new Book(c3, 11));
-            c3.Books.Add(new Book(c3, 12));
-            c3.Books.Add(new Book(c3, 13));
-            dataRepository.AddCatalog(c3);
+            ICatalog c3 = new Catalog(3, "Tolkien", "Lord of Rings");
+            dataRepository.AddCatalog(3, "Tolkien", "Lord of Rings");
+
+            ICatalog c4 = new Catalog(4, "Dostoevsky", "Crime and Punishment");
+            dataRepository.AddCatalog(4, "Dostoevsky", "Crime and Punishment");
+
+            ICatalog c5 = new Catalog(5, "Dostoevsky", "Crime and Punishment");
+            dataRepository.AddCatalog(5, "Dostoevsky", "Crime and Punishment");
+
+            ICatalog c6 = new Catalog(6, "Dostoevsky", "Crime and Punishment");
+            dataRepository.AddCatalog(6, "Dostoevsky", "Crime and Punishment");
+
+            ICatalog c7 = new Catalog(7, "Conrad", "Heart of Darkness");
+            dataRepository.AddCatalog(7, "Conrad", "Heart of Darkness");
+
+            ICatalog c8 = new Catalog(8, "Conrad", "Heart of Darkness");
+            dataRepository.AddCatalog(8, "Conrad", "Heart of Darkness");
+
+            ICatalog c9 = new Catalog(9, "Conrad", "Heart of Darkness");
+            dataRepository.AddCatalog(9, "Conrad", "Heart of Darkness");
+
+            ICatalog c10 = new Catalog(10, "Tolkien", "Lord of Rings");
+            dataRepository.AddCatalog(10, "Tolkien", "Lord of Rings");
+
+            ICatalog c11 = new Catalog(11, "Tolkien", "Lord of Rings");
+            dataRepository.AddCatalog(11, "Tolkien", "Lord of Rings");
+
+            ICatalog c12 = new Catalog(12, "Tolkien", "Lord of Rings");
+            dataRepository.AddCatalog(12, "Tolkien", "Lord of Rings");
 
             IReader r1 = new Reader(1, "Jack", "Smith");
-            r1.Books.Add(new Book(c3, 14));
-            r1.Books.Add(new Book(c1, 15));
-            r1.Books.Add(new Book(c3, 16));
-            dataRepository.AddReader(r1);
+            dataRepository.AddReader(1, "Jack", "Smith");
 
             IReader r2 = new Reader(2, "Mary", "Carlisle");
-            r2.Books.Add(new Book(c2, 17));
-            r2.Books.Add(new Book(c1, 18));
-            r2.Books.Add(new Book(c3, 19));
-            dataRepository.AddReader(r2);
+            dataRepository.AddReader(2, "Mary", "Carlisle");
 
             IReader r3 = new Reader(3, "John", "Novak");
-            r3.Books.Add(new Book(c1, 20));
-            r3.Books.Add(new Book(c2, 21));
-            dataRepository.AddReader(r3);
+            dataRepository.AddReader(3, "John", "Novak");
+
+            IAction a1 = new Action(1, 1, 1);
+            dataRepository.AddAction(1, 1, 1);
+
+            IAction a2 = new Action(2, 2, 1);
+            dataRepository.AddAction(2, 2, 1);
+
+            IAction a3 = new Action(3, 4, 2);
+            dataRepository.AddAction(3, 4, 2);
+
+            IAction a4 = new Action(4, 3, 3);
+            dataRepository.AddAction(4, 3, 3);
+
+            IAction a5 = new Action(5, 12, 1);
+            dataRepository.AddAction(5, 12, 1);
+
+            IAction a6 = new Action(6, 10, 1);
+            dataRepository.AddAction(6, 10, 1);
+
+            IAction a7 = new Action(7, 8, 2);
+            dataRepository.AddAction(7, 8, 2);
+
+            IAction a8 = new Action(8, 7, 2);
+            dataRepository.AddAction(8, 7, 2);
         }
     }
 }
