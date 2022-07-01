@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
-using Data.API;
 
-namespace Presentation.ViewModel.MVVM
+namespace Presentation.ViewModel
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
