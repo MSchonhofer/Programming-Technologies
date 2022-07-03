@@ -64,7 +64,6 @@ namespace Presentation.ViewModel
                 OnPropertyChanged("ID");
             }
         }
-
         private string text;
         public string Text
         {
@@ -233,7 +232,6 @@ namespace Presentation.ViewModel
                 OnPropertyChanged("Readers");
             }
         }
-
         public System.Action<string> MessageShowBoxDelegate { get; set; } = x => throw new ArgumentOutOfRangeException($"The delegate {nameof(MessageShowBoxDelegate)} must be assigned by view layer.");
     }
 }
