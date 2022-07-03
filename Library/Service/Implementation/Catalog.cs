@@ -20,6 +20,5 @@ namespace Service.Implementation
             Author = author;
             Title = title;
         }
-
     }
 }
