@@ -16,7 +16,6 @@ namespace TestViewModel
         private IModel model;
 
         [TestMethod]
-
         public void ViewModelInitializeRelayCommandTest()
         {
             ViewModel vm = new ViewModel(model);
