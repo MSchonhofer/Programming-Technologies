@@ -11,6 +11,5 @@ namespace Data.API
         string Author { get; set; }
         string Title { get; set; }
         int CatalogID { get; set; }
-
     }
 }
