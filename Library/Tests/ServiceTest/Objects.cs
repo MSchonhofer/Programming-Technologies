@@ -27,5 +27,4 @@ namespace Tests.ServiceTest
         public int CatalogID { get; set; }
 
     }
-
 }
