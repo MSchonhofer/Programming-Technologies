@@ -19,7 +19,6 @@ namespace Service.API
         public abstract IEnumerable<ICatalog> GetAllCatalogs();
         public abstract void UpdateCatalog(int id, string author, string name);
         public abstract void DeleteCatalog(int id);
-
         //readers
         public abstract void AddReader(int id, string name, string surname);
         public abstract IReader GetReader(int id);
