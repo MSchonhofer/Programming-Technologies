@@ -16,7 +16,6 @@ namespace Tests.ServiceTest
         private IDataRepository dataRepository = Substitute.For<IDataRepository>();
 
         [TestMethod]
-
         public void TestCatalogs()
         {
             IService service = IService.CreateService(dataRepository);
